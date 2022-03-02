@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    /* 具体配置项参考以下网页中的介绍：
+      - ts官方handbook: https://www.tslang.cn/docs/handbook/compiler-options.html
+      - 掌握ts：https://juejin.cn/post/6844904178234458120
+    */
+    "target": "es5",
+    "jsx": "react",
+    "module": "ESNext",
+    "declaration": false,
+    "outDir": "./build",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["src"]
+}
