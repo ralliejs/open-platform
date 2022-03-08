@@ -4,15 +4,41 @@
       - ts官方handbook: https://www.tslang.cn/docs/handbook/compiler-options.html
       - 掌握ts：https://juejin.cn/post/6844904178234458120
     */
+    // 编译为es5
     "target": "es5",
-    "jsx": "react",
+    // jsx语法编译为React.createElement
+    "jsx": "react-jsx",
+    // 生成代码的模块标准为ESNext
     "module": "ESNext",
+    // 允许编译js文件
+    "allowJs": true,
+    // js文件不报错
+    "checkJs": false,
+    // 不生成类型声明文件
     "declaration": false,
-    "outDir": "./build",
-    "esModuleInterop": true,
+    // 输出目录
+    "outDir": "./dist",
+    // 强制路径大小写敏感
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true
-  },
-  "include": ["src"]
+    // 不开启所有严格的类型检查
+    "strict": false,
+    // 不允许隐式的any
+    "noImplicitAny": true,
+    // 允许把null、undefined赋值给其他类型的变量
+    "strictNullChecks": false,
+    // 不允许this有隐式的any
+    "noImplicitThis": true,
+    // 删除注释
+    "removeComments": true,
+    // 相对路径的引用规则
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    // path的根路径
+    "baseUrl": ".",
+    // 路径别名
+    "paths": {
+      "~/*": ["./src/*"],
+      "@/*": ["./src/components/business/*"]
+    }
+  }
 }

@@ -1,8 +1,8 @@
 node_modules
 
 .cache
-/build
+/dist
 /logs
 /.eslintcache
 
-**/*/.DS_Store
+.DS_Store
