@@ -6,6 +6,19 @@ const DotEnv = require('dotenv-webpack')
 
 const postcssOptions = require('./postcss.config')
 const lessOptions = require('./less.config')
+const cssOptions = require('./css.config')
+
+const styleLoaders = (useLess) => {
+  const loaders = [
+    isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+    { loader: 'css-loader', options: cssOptions },
+    { loader: 'postcss-loader', options: { postcssOptions } },
+  ]
+  if (useLess) {
+    loaders.push({ loader: 'less-loader', options: { lessOptions } })
+  }
+  return loaders
+}
 
 // constants
 const isProduction = process.env.NODE_ENV === 'production'
@@ -13,7 +26,7 @@ const appEnv = process.env.APP_ENV || 'dev'
 
 const config = {
   entry: {
-    main: './src/entry.tsx'
+    main: './src/entry.tsx',
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -27,7 +40,7 @@ const config = {
   },
   devtool: isProduction && 'eval-cheap-source-map',
   resolve: {
-    extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+    extensions: ['.tsx', '.ts', '.jsx', '.js', '.json', '.svg'],
     alias: {
       '~': path.resolve(__dirname, '../src'), // src根目录别名
       '@': path.resolve(__dirname, '.../src/components/business'), // 业务组件目录别名
@@ -40,11 +53,11 @@ const config = {
   optimization: {
     // 只需要把chunks配置为all即可，默认的分包规则会把node_modules里面的内容单独分包
     splitChunks: {
-      chunks: 'all'
-    }
+      chunks: 'all',
+    },
   },
   stats: {
-    errorDetails: true // 构建出错时打印详细的错误信息
+    errorDetails: true, // 构建出错时打印详细的错误信息
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -53,7 +66,7 @@ const config = {
     new ProgressBarPlugin(),
     new DotEnv({
       path: path.resolve(__dirname, `../env/${appEnv}.env`),
-    })
+    }),
   ],
   module: {
     rules: [
@@ -64,34 +77,31 @@ const config = {
       },
       {
         test: /\.less$/i,
-        use: [
-          isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                auto: true, // 只为.module.[css-ext]结尾的样式文件应用css-module
-                localIdentName: '[local]__[hash:base64:8]', // 添加原始类名
-              },
-            },
-          },
-          { loader: 'postcss-loader', options: { postcssOptions } },
-          { loader: 'less-loader', options: { lessOptions } },
-        ],
+        use: styleLoaders(true),
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+        test: /\.css$/i,
+        use: styleLoaders(false),
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i, // 静态资源
+        exclude: /\.react\.svg/i,
         type: 'asset',
       },
+      {
+        test: /\.react\.svg/i, // svg文件转react组件
+        use: [{ loader: '@svgr/webpack' }],
+      },
     ],
-  }
+  },
 }
 
 module.exports = () => {
   if (isProduction) {
     config.mode = 'production'
     config.plugins.push(
-      new MiniCssExtractPlugin({ // 生产环境下css文件单独打包
+      new MiniCssExtractPlugin({
+        // 生产环境下css文件单独打包
         filename: 'static/css/[name].[contenthash:8].css',
       }),
     )

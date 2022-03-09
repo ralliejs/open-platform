@@ -40,5 +40,6 @@
       "~/*": ["./src/*"],
       "@/*": ["./src/components/business/*"]
     }
-  }
+  },
+  "include": ["src"]
 }

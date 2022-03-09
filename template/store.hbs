@@ -1,0 +1,18 @@
+import { createContainer } from "unstated-next";
+import { useImmer } from 'use-immer'
+
+interface {{ properCase name }}Value {
+
+}
+
+const initialValue: {{ properCase name }}Value = {
+
+}
+
+export default createContainer(() => {
+  const [{{ camelCase name }}, set{{ properCase name}}] = useImmer<{{ properCase name }}Value>(initialValue)
+  return {
+    {{ camelCase name }},
+    set{{ properCase name }}
+  }
+})

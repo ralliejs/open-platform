@@ -1,5 +1,16 @@
 import ReactDOM from 'react-dom'
 import { Button } from 'antd'
-import '~/styles/global.less'
+import StoresProvider from '~/components/common/stores-provider'
 
-ReactDOM.render(<Button>Hello Word</Button>, document.body)
+import '~/styles/index.less'
+import 'normalize.css'
+
+ReactDOM.render(
+  <>
+    1232
+    <StoresProvider>
+      <Button>Hello World</Button>
+    </StoresProvider>
+  </>,
+  document.getElementById('root'),
+)
