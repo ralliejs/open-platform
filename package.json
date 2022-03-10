@@ -14,7 +14,9 @@
     "build:gray": "cross-env NODE_ENV=production APP_ENV=gray webpack --config ./config/webpack.config.js",
     "build:prod": "cross-env NODE_ENV=production APP_ENV=prod webpack --config ./config/webpack.config.js",
     "build": "pnpm build:prod",
-    "addfile": "pnpm plop --plopfile ./scripts/plopfile.js"
+    "addfile": "pnpm plop --plopfile ./scripts/plopfile.js",
+    "prepare": "husky install",
+    "precommit": "lint-staged"
   },
   "author": "runnan",
   "license": "ISC",
@@ -38,16 +40,24 @@
     "eslint-plugin-react": "^7.29.2",
     "eslint-plugin-react-hooks": "^4.3.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^7.0.4",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
+    "lint-staged": "^12.3.5",
     "mini-css-extract-plugin": "^2.6.0",
     "plop": "^3.0.5",
     "postcss": "^8.4.8",
+    "postcss-less": "^6.0.0",
     "postcss-loader": "^6.2.1",
     "postcss-px-to-viewport": "^1.1.1",
     "prettier": "^2.5.1",
     "progress-bar-webpack-plugin": "^2.1.0",
     "style-loader": "^3.3.1",
+    "stylelint": "^14.5.3",
+    "stylelint-config-css-modules": "^3.0.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-property-sort-order-smacss": "^8.0.0",
+    "stylelint-config-standard": "^25.0.0",
     "ts-loader": "^9.2.7",
     "typescript": "^4.6.2",
     "webpack": "^5.69.1",
@@ -57,12 +67,26 @@
   "dependencies": {
     "antd": "^4.19.1",
     "axios": "^0.26.0",
+    "i18next": "^21.6.14",
     "immer": "^9.0.12",
     "normalize.css": "^8.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-i18next": "^11.15.6",
     "react-router-dom": "^6.2.2",
     "unstated-next": "^1.1.0",
     "use-immer": "^0.6.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.less": [
+      "stylelint --fix",
+      "prettier --write",
+      "git add"
+    ]
   }
 }

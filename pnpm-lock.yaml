@@ -22,21 +22,31 @@ specifiers:
   eslint-plugin-react: ^7.29.2
   eslint-plugin-react-hooks: ^4.3.0
   html-webpack-plugin: ^5.5.0
+  husky: ^7.0.4
+  i18next: ^21.6.14
   immer: ^9.0.12
   less: ^4.1.2
   less-loader: ^10.2.0
+  lint-staged: ^12.3.5
   mini-css-extract-plugin: ^2.6.0
   normalize.css: ^8.0.1
   plop: ^3.0.5
   postcss: ^8.4.8
+  postcss-less: ^6.0.0
   postcss-loader: ^6.2.1
   postcss-px-to-viewport: ^1.1.1
   prettier: ^2.5.1
   progress-bar-webpack-plugin: ^2.1.0
   react: ^17.0.2
   react-dom: ^17.0.2
+  react-i18next: ^11.15.6
   react-router-dom: ^6.2.2
   style-loader: ^3.3.1
+  stylelint: ^14.5.3
+  stylelint-config-css-modules: ^3.0.0
+  stylelint-config-prettier: ^9.0.3
+  stylelint-config-property-sort-order-smacss: ^8.0.0
+  stylelint-config-standard: ^25.0.0
   ts-loader: ^9.2.7
   typescript: ^4.6.2
   unstated-next: ^1.1.0
@@ -48,10 +58,12 @@ specifiers:
 dependencies:
   antd: 4.19.1_react-dom@17.0.2+react@17.0.2
   axios: 0.26.0
+  i18next: 21.6.14
   immer: 9.0.12
   normalize.css: 8.0.1
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
+  react-i18next: 11.15.6_f94be6b4dd1edc1d8608af374b838bd6
   react-router-dom: 6.2.2_react-dom@17.0.2+react@17.0.2
   unstated-next: 1.1.0
   use-immer: 0.6.0_immer@9.0.12+react@17.0.2
@@ -76,16 +88,24 @@ devDependencies:
   eslint-plugin-react: 7.29.2_eslint@7.32.0
   eslint-plugin-react-hooks: 4.3.0_eslint@7.32.0
   html-webpack-plugin: 5.5.0_webpack@5.69.1
+  husky: 7.0.4
   less: 4.1.2
   less-loader: 10.2.0_less@4.1.2+webpack@5.69.1
+  lint-staged: 12.3.5
   mini-css-extract-plugin: 2.6.0_webpack@5.69.1
   plop: 3.0.5
   postcss: 8.4.8
+  postcss-less: 6.0.0_postcss@8.4.8
   postcss-loader: 6.2.1_postcss@8.4.8+webpack@5.69.1
   postcss-px-to-viewport: 1.1.1
   prettier: 2.5.1
   progress-bar-webpack-plugin: 2.1.0_webpack@5.69.1
   style-loader: 3.3.1_webpack@5.69.1
+  stylelint: 14.5.3
+  stylelint-config-css-modules: 3.0.0_stylelint@14.5.3
+  stylelint-config-prettier: 9.0.3_stylelint@14.5.3
+  stylelint-config-property-sort-order-smacss: 8.0.0_stylelint@14.5.3
+  stylelint-config-standard: 25.0.0_stylelint@14.5.3
   ts-loader: 9.2.7_typescript@4.6.2+webpack@5.69.1
   typescript: 4.6.2
   webpack: 5.69.1_webpack-cli@4.9.2
@@ -1724,8 +1744,16 @@ packages:
     resolution: {integrity: sha1-k+Jb+e51/g/YC1lLxP6w6GIRG1o=, tarball: http://npm-registry.duowan.com/@types/mime/download/@types/mime-1.3.2.tgz}
     dev: true
 
+  /@types/minimist/1.2.2:
+    resolution: {integrity: sha1-7nceK6Sz3Fs3KTXVSf2WF780W4w=, tarball: http://npm-registry.duowan.com/@types/minimist/download/@types/minimist-1.2.2.tgz}
+    dev: true
+
   /@types/node/17.0.21:
     resolution: {integrity: sha1-hkuYfAxo0HtDRYRcPmO3Xt0UNkQ=, tarball: http://npm-registry.duowan.com/@types/node/download/@types/node-17.0.21.tgz}
+    dev: true
+
+  /@types/normalize-package-data/2.4.1:
+    resolution: {integrity: sha1-0zV0eaD9/dWQf+Z+F+CoXJBuEwE=, tarball: http://npm-registry.duowan.com/@types/normalize-package-data/download/@types/normalize-package-data-2.4.1.tgz}
     dev: true
 
   /@types/parse-json/4.0.0:
@@ -2203,6 +2231,11 @@ packages:
       color-convert: 2.0.1
     dev: true
 
+  /ansi-styles/6.1.0:
+    resolution: {integrity: sha1-hzE8ECuBGKvVc3GvqzRhi/c1DtM=, tarball: http://npm-registry.duowan.com/ansi-styles/download/ansi-styles-6.1.0.tgz}
+    engines: {node: '>=12'}
+    dev: true
+
   /antd/4.19.1_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha1-r0TAlytwhliO49Ax4/vgrwBjcfk=, tarball: http://npm-registry.duowan.com/antd/download/antd-4.19.1.tgz}
     peerDependencies:
@@ -2331,6 +2364,11 @@ packages:
       es-abstract: 1.19.1
     dev: true
 
+  /arrify/1.0.1:
+    resolution: {integrity: sha1-iYUI2iIm84DfkEcoRWhJwVAaSw0=, tarball: http://npm-registry.duowan.com/arrify/download/arrify-1.0.1.tgz}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
   /astral-regex/2.0.0:
     resolution: {integrity: sha1-SDFDxWeu7UeFdZwIZXhtx319LjE=, tarball: http://npm-registry.duowan.com/astral-regex/download/astral-regex-2.0.0.tgz}
     engines: {node: '>=8'}
@@ -2414,6 +2452,10 @@ packages:
 
   /balanced-match/1.0.2:
     resolution: {integrity: sha1-6D46fj8wCzTLnYf2FfoMvzV2kO4=, tarball: http://npm-registry.duowan.com/balanced-match/download/balanced-match-1.0.2.tgz}
+    dev: true
+
+  /balanced-match/2.0.0:
+    resolution: {integrity: sha1-3HD5INeNuLhYU1eVhnv0j4IGM9k=, tarball: http://npm-registry.duowan.com/balanced-match/download/balanced-match-2.0.0.tgz}
     dev: true
 
   /base64-js/1.5.1:
@@ -2553,6 +2595,20 @@ packages:
       tslib: 2.3.1
     dev: true
 
+  /camelcase-keys/6.2.2:
+    resolution: {integrity: sha1-XnVda6UaoiPsfT1S8ld4IQ+dw8A=, tarball: http://npm-registry.duowan.com/camelcase-keys/download/camelcase-keys-6.2.2.tgz}
+    engines: {node: '>=8'}
+    dependencies:
+      camelcase: 5.3.1
+      map-obj: 4.3.0
+      quick-lru: 4.0.1
+    dev: true
+
+  /camelcase/5.3.1:
+    resolution: {integrity: sha1-48mzFWnhBoEd8kL3FXJaH0xJQyA=, tarball: http://npm-registry.duowan.com/camelcase/download/camelcase-5.3.1.tgz}
+    engines: {node: '>=6'}
+    dev: true
+
   /camelcase/6.3.0:
     resolution: {integrity: sha1-VoW5XrIJrJwMF3Rnd4ychN9Yupo=, tarball: http://npm-registry.duowan.com/camelcase/download/camelcase-6.3.0.tgz}
     engines: {node: '>=10'}
@@ -2676,6 +2732,22 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
+  /cli-truncate/2.1.0:
+    resolution: {integrity: sha1-w54ovwXtzeW+O5iZKiLe7Vork8c=, tarball: http://npm-registry.duowan.com/cli-truncate/download/cli-truncate-2.1.0.tgz}
+    engines: {node: '>=8'}
+    dependencies:
+      slice-ansi: 3.0.0
+      string-width: 4.2.3
+    dev: true
+
+  /cli-truncate/3.1.0:
+    resolution: {integrity: sha1-PyOrElNePXPoObtD5zyd5IfbE4k=, tarball: http://npm-registry.duowan.com/cli-truncate/download/cli-truncate-3.1.0.tgz}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      slice-ansi: 5.0.0
+      string-width: 5.1.2
+    dev: true
+
   /cli-width/3.0.0:
     resolution: {integrity: sha1-ovSEN6LKqaIkNueUvwceyeYc7fY=, tarball: http://npm-registry.duowan.com/cli-width/download/cli-width-3.0.0.tgz}
     engines: {node: '>= 10'}
@@ -2688,6 +2760,13 @@ packages:
       is-plain-object: 2.0.4
       kind-of: 6.0.3
       shallow-clone: 3.0.1
+    dev: true
+
+  /clone-regexp/2.2.0:
+    resolution: {integrity: sha1-fWXgCIXNh5ZAXDWnN+eoa3Qp428=, tarball: http://npm-registry.duowan.com/clone-regexp/download/clone-regexp-2.2.0.tgz}
+    engines: {node: '>=6'}
+    dependencies:
+      is-regexp: 2.1.0
     dev: true
 
   /clone/1.0.4:
@@ -2714,6 +2793,10 @@ packages:
 
   /color-name/1.1.4:
     resolution: {integrity: sha1-wqCah6y95pVD3m9j+jmVyCbFNqI=, tarball: http://npm-registry.duowan.com/color-name/download/color-name-1.1.4.tgz}
+    dev: true
+
+  /colord/2.9.2:
+    resolution: {integrity: sha1-JeK6y7qmWZFCLAfqIJ4giUKO/7E=, tarball: http://npm-registry.duowan.com/colord/download/colord-2.9.2.tgz}
     dev: true
 
   /colorette/2.0.16:
@@ -2853,6 +2936,11 @@ packages:
       which: 2.0.2
     dev: true
 
+  /css-functions-list/3.0.1:
+    resolution: {integrity: sha1-FGDff7WE0WksMLEFFR27mIyAlPk=, tarball: http://npm-registry.duowan.com/css-functions-list/download/css-functions-list-3.0.1.tgz}
+    engines: {node: '>=12.22'}
+    dev: true
+
   /css-loader/6.7.0_webpack@5.69.1:
     resolution: {integrity: sha1-wSANod//5mQ7GL2iD92EytPjbTk=, tarball: http://npm-registry.duowan.com/css-loader/download/css-loader-6.7.0.tgz}
     engines: {node: '>= 12.13.0'}
@@ -2868,6 +2956,10 @@ packages:
       postcss-value-parser: 4.2.0
       semver: 7.3.5
       webpack: 5.69.1_webpack-cli@4.9.2
+    dev: true
+
+  /css-property-sort-order-smacss/2.1.3:
+    resolution: {integrity: sha1-uc8XU7NhLufRj+mSJPSDNT6jjlM=, tarball: http://npm-registry.duowan.com/css-property-sort-order-smacss/download/css-property-sort-order-smacss-2.1.3.tgz}
     dev: true
 
   /css-select/4.2.1:
@@ -2941,6 +3033,32 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+    dev: true
+
+  /debug/4.3.3_supports-color@9.2.1:
+    resolution: {integrity: sha1-BCZuC3CpjURi5uKI44JZITMytmQ=, tarball: http://npm-registry.duowan.com/debug/download/debug-4.3.3.tgz}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    dependencies:
+      ms: 2.1.2
+      supports-color: 9.2.1
+    dev: true
+
+  /decamelize-keys/1.1.0:
+    resolution: {integrity: sha1-0XGoeTMlKAfrPLYdwcFEXQeN8tk=, tarball: http://npm-registry.duowan.com/decamelize-keys/download/decamelize-keys-1.1.0.tgz}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      decamelize: 1.2.0
+      map-obj: 1.0.1
+    dev: true
+
+  /decamelize/1.2.0:
+    resolution: {integrity: sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=, tarball: http://npm-registry.duowan.com/decamelize/download/decamelize-1.2.0.tgz}
+    engines: {node: '>=0.10.0'}
     dev: true
 
   /deep-equal/1.1.1:
@@ -3123,6 +3241,10 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /eastasianwidth/0.2.0:
+    resolution: {integrity: sha1-aWzi7Aqg5uqTo5f/zySqeEDIJ8s=, tarball: http://npm-registry.duowan.com/eastasianwidth/download/eastasianwidth-0.2.0.tgz}
+    dev: true
+
   /ee-first/1.1.1:
     resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=, tarball: http://npm-registry.duowan.com/ee-first/download/ee-first-1.1.1.tgz}
     dev: true
@@ -3133,6 +3255,10 @@ packages:
 
   /emoji-regex/8.0.0:
     resolution: {integrity: sha1-6Bj9ac5cz8tARZT4QpY79TFkzDc=, tarball: http://npm-registry.duowan.com/emoji-regex/download/emoji-regex-8.0.0.tgz}
+    dev: true
+
+  /emoji-regex/9.2.2:
+    resolution: {integrity: sha1-hAyIA7DYBH9P8M+WMXazLU7z7XI=, tarball: http://npm-registry.duowan.com/emoji-regex/download/emoji-regex-9.2.2.tgz}
     dev: true
 
   /encodeurl/1.0.2:
@@ -3532,6 +3658,13 @@ packages:
       strip-final-newline: 2.0.0
     dev: true
 
+  /execall/2.0.0:
+    resolution: {integrity: sha1-FqBrX+UJnffQC+XZwG7s3tFmO0U=, tarball: http://npm-registry.duowan.com/execall/download/execall-2.0.0.tgz}
+    engines: {node: '>=8'}
+    dependencies:
+      clone-regexp: 2.2.0
+    dev: true
+
   /expand-tilde/2.0.2:
     resolution: {integrity: sha1-l+gBqgUt8CRU3kawK/YhZCzchQI=, tarball: http://npm-registry.duowan.com/expand-tilde/download/expand-tilde-2.0.2.tgz}
     engines: {node: '>=0.10.0'}
@@ -3787,6 +3920,11 @@ packages:
       has-symbols: 1.0.3
     dev: true
 
+  /get-stdin/8.0.0:
+    resolution: {integrity: sha1-y61qc/63X27rIrqeAfiaooqpelM=, tarball: http://npm-registry.duowan.com/get-stdin/download/get-stdin-8.0.0.tgz}
+    engines: {node: '>=10'}
+    dev: true
+
   /get-stream/6.0.1:
     resolution: {integrity: sha1-omLY7vZ6ztV8KFKtYWdSakPL97c=, tarball: http://npm-registry.duowan.com/get-stream/download/get-stream-6.0.1.tgz}
     engines: {node: '>=10'}
@@ -3831,6 +3969,13 @@ packages:
       resolve-dir: 1.0.1
     dev: true
 
+  /global-modules/2.0.0:
+    resolution: {integrity: sha1-mXYFrSNF8n9RU5vqJldEISFcd4A=, tarball: http://npm-registry.duowan.com/global-modules/download/global-modules-2.0.0.tgz}
+    engines: {node: '>=6'}
+    dependencies:
+      global-prefix: 3.0.0
+    dev: true
+
   /global-prefix/1.0.2:
     resolution: {integrity: sha1-2/dDxsFJklk8ZVVoy2btMsASLr4=, tarball: http://npm-registry.duowan.com/global-prefix/download/global-prefix-1.0.2.tgz}
     engines: {node: '>=0.10.0'}
@@ -3839,6 +3984,15 @@ packages:
       homedir-polyfill: 1.0.3
       ini: 1.3.8
       is-windows: 1.0.2
+      which: 1.3.1
+    dev: true
+
+  /global-prefix/3.0.0:
+    resolution: {integrity: sha1-/IX3MGTfafUEIfR/iD/luRO6m5c=, tarball: http://npm-registry.duowan.com/global-prefix/download/global-prefix-3.0.0.tgz}
+    engines: {node: '>=6'}
+    dependencies:
+      ini: 1.3.8
+      kind-of: 6.0.3
       which: 1.3.1
     dev: true
 
@@ -3878,6 +4032,10 @@ packages:
       slash: 4.0.0
     dev: true
 
+  /globjoin/0.1.4:
+    resolution: {integrity: sha1-L0SUrIkZ43Z8XLtpHp9GMyQoXUM=, tarball: http://npm-registry.duowan.com/globjoin/download/globjoin-0.1.4.tgz}
+    dev: true
+
   /graceful-fs/4.2.9:
     resolution: {integrity: sha1-BBsF30V1Xlh6JJQiebnRExRuHJY=, tarball: http://npm-registry.duowan.com/graceful-fs/download/graceful-fs-4.2.9.tgz}
     dev: true
@@ -3897,6 +4055,11 @@ packages:
       wordwrap: 1.0.0
     optionalDependencies:
       uglify-js: 3.15.1
+    dev: true
+
+  /hard-rejection/2.1.0:
+    resolution: {integrity: sha1-HG7aXBaFxjlCdm15u0Cudzzs2IM=, tarball: http://npm-registry.duowan.com/hard-rejection/download/hard-rejection-2.1.0.tgz}
+    engines: {node: '>=6'}
     dev: true
 
   /has-bigints/1.0.1:
@@ -3957,6 +4120,17 @@ packages:
       parse-passwd: 1.0.0
     dev: true
 
+  /hosted-git-info/2.8.9:
+    resolution: {integrity: sha1-3/wL+aIcAiCQkPKqaUKeFBTa8/k=, tarball: http://npm-registry.duowan.com/hosted-git-info/download/hosted-git-info-2.8.9.tgz}
+    dev: true
+
+  /hosted-git-info/4.1.0:
+    resolution: {integrity: sha1-gnuChn6f8cjQxNnVOIA5fSyG0iQ=, tarball: http://npm-registry.duowan.com/hosted-git-info/download/hosted-git-info-4.1.0.tgz}
+    engines: {node: '>=10'}
+    dependencies:
+      lru-cache: 6.0.0
+    dev: true
+
   /hpack.js/2.1.6:
     resolution: {integrity: sha1-h3dMCUnlE/QuhFdbPEVoH63ioLI=, tarball: http://npm-registry.duowan.com/hpack.js/download/hpack.js-2.1.6.tgz}
     dependencies:
@@ -3970,6 +4144,10 @@ packages:
     resolution: {integrity: sha1-dgtARoXLHXlOT0t0QzLjsA3P5Ig=, tarball: http://npm-registry.duowan.com/html-entities/download/html-entities-2.3.2.tgz}
     dev: true
 
+  /html-escaper/2.0.2:
+    resolution: {integrity: sha1-39YAJ9o2o238viNiYsAKWCJoFFM=, tarball: http://npm-registry.duowan.com/html-escaper/download/html-escaper-2.0.2.tgz}
+    dev: false
+
   /html-minifier-terser/6.1.0:
     resolution: {integrity: sha1-v8gYk0zAeRj2s2afV3Ts39SPMqs=, tarball: http://npm-registry.duowan.com/html-minifier-terser/download/html-minifier-terser-6.1.0.tgz}
     engines: {node: '>=12'}
@@ -3982,6 +4160,17 @@ packages:
       param-case: 3.0.4
       relateurl: 0.2.7
       terser: 5.12.0
+    dev: true
+
+  /html-parse-stringify/3.0.1:
+    resolution: {integrity: sha1-38EBc0fOn3fIFBpQfyMwQMWcVdI=, tarball: http://npm-registry.duowan.com/html-parse-stringify/download/html-parse-stringify-3.0.1.tgz}
+    dependencies:
+      void-elements: 3.1.0
+    dev: false
+
+  /html-tags/3.1.0:
+    resolution: {integrity: sha1-e15vfmZen7QfMAB+2eDUHpf7IUA=, tarball: http://npm-registry.duowan.com/html-tags/download/html-tags-3.1.0.tgz}
+    engines: {node: '>=8'}
     dev: true
 
   /html-webpack-plugin/5.5.0_webpack@5.69.1:
@@ -4071,6 +4260,18 @@ packages:
     engines: {node: '>=10.17.0'}
     dev: true
 
+  /husky/7.0.4:
+    resolution: {integrity: sha1-JCBIJF3EnI+xvwzHz7mN1yJTFTU=, tarball: http://npm-registry.duowan.com/husky/download/husky-7.0.4.tgz}
+    engines: {node: '>=12'}
+    hasBin: true
+    dev: true
+
+  /i18next/21.6.14:
+    resolution: {integrity: sha1-K8GZ+6f02kS1lS198KOBSm5cOUM=, tarball: http://npm-registry.duowan.com/i18next/download/i18next-21.6.14.tgz}
+    dependencies:
+      '@babel/runtime': 7.17.2
+    dev: false
+
   /iconv-lite/0.4.24:
     resolution: {integrity: sha1-ICK0sl+93CHS9SSXSkdKr+czkIs=, tarball: http://npm-registry.duowan.com/iconv-lite/download/iconv-lite-0.4.24.tgz}
     engines: {node: '>=0.10.0'}
@@ -4119,6 +4320,11 @@ packages:
     dependencies:
       parent-module: 1.0.1
       resolve-from: 4.0.0
+    dev: true
+
+  /import-lazy/4.0.0:
+    resolution: {integrity: sha1-6OtidIOgpD2jwD8+NVSL5csMwVM=, tarball: http://npm-registry.duowan.com/import-lazy/download/import-lazy-4.0.0.tgz}
+    engines: {node: '>=8'}
     dev: true
 
   /import-local/3.1.0:
@@ -4282,6 +4488,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /is-fullwidth-code-point/4.0.0:
+    resolution: {integrity: sha1-+uMWfHKedGP4RhzlErCApJJoqog=, tarball: http://npm-registry.duowan.com/is-fullwidth-code-point/download/is-fullwidth-code-point-4.0.0.tgz}
+    engines: {node: '>=12'}
+    dev: true
+
   /is-glob/4.0.3:
     resolution: {integrity: sha1-ZPYeQsu7LuwgcanawLKLoeZdUIQ=, tarball: http://npm-registry.duowan.com/is-glob/download/is-glob-4.0.3.tgz}
     engines: {node: '>=0.10.0'}
@@ -4326,6 +4537,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /is-plain-obj/1.1.0:
+    resolution: {integrity: sha1-caUMhCnfync8kqOQpKA7OfzVHT4=, tarball: http://npm-registry.duowan.com/is-plain-obj/download/is-plain-obj-1.1.0.tgz}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
   /is-plain-obj/3.0.0:
     resolution: {integrity: sha1-r28uoUrFpkYYOlu9tbqrvBVq2dc=, tarball: http://npm-registry.duowan.com/is-plain-obj/download/is-plain-obj-3.0.0.tgz}
     engines: {node: '>=10'}
@@ -4349,6 +4565,11 @@ packages:
     dependencies:
       call-bind: 1.0.2
       has-tostringtag: 1.0.0
+    dev: true
+
+  /is-regexp/2.1.0:
+    resolution: {integrity: sha1-zXNKVoZOI7lWv058ZsOWpMCyLC0=, tarball: http://npm-registry.duowan.com/is-regexp/download/is-regexp-2.1.0.tgz}
+    engines: {node: '>=6'}
     dev: true
 
   /is-relative/1.0.0:
@@ -4528,6 +4749,10 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
+  /known-css-properties/0.24.0:
+    resolution: {integrity: sha1-Ga79hQA65WmKVWDStVE1v1QyFVw=, tarball: http://npm-registry.duowan.com/known-css-properties/download/known-css-properties-0.24.0.tgz}
+    dev: true
+
   /less-loader/10.2.0_less@4.1.2+webpack@5.69.1:
     resolution: {integrity: sha1-lyhth5fcPcBbHRaw7OxflovdTjI=, tarball: http://npm-registry.duowan.com/less-loader/download/less-loader-10.2.0.tgz}
     engines: {node: '>= 12.13.0'}
@@ -4580,8 +4805,54 @@ packages:
       resolve: 1.22.0
     dev: true
 
+  /lilconfig/2.0.4:
+    resolution: {integrity: sha1-9FB9BD1wWLOAtqj1y3vNSzTO4II=, tarball: http://npm-registry.duowan.com/lilconfig/download/lilconfig-2.0.4.tgz}
+    engines: {node: '>=10'}
+    dev: true
+
   /lines-and-columns/1.2.4:
     resolution: {integrity: sha1-7KKE910pZQeTCdwK2SVauy68FjI=, tarball: http://npm-registry.duowan.com/lines-and-columns/download/lines-and-columns-1.2.4.tgz}
+    dev: true
+
+  /lint-staged/12.3.5:
+    resolution: {integrity: sha1-gEjOBIw8rBL1cgCgY0SlTckcj6k=, tarball: http://npm-registry.duowan.com/lint-staged/download/lint-staged-12.3.5.tgz}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    hasBin: true
+    dependencies:
+      cli-truncate: 3.1.0
+      colorette: 2.0.16
+      commander: 8.3.0
+      debug: 4.3.3_supports-color@9.2.1
+      execa: 5.1.1
+      lilconfig: 2.0.4
+      listr2: 4.0.5
+      micromatch: 4.0.4
+      normalize-path: 3.0.0
+      object-inspect: 1.12.0
+      string-argv: 0.3.1
+      supports-color: 9.2.1
+      yaml: 1.10.2
+    transitivePeerDependencies:
+      - enquirer
+    dev: true
+
+  /listr2/4.0.5:
+    resolution: {integrity: sha1-ncxQIhWD6LTHHEP5x9/Q71RrddU=, tarball: http://npm-registry.duowan.com/listr2/download/listr2-4.0.5.tgz}
+    engines: {node: '>=12'}
+    peerDependencies:
+      enquirer: '>= 2.3.0 < 3'
+    peerDependenciesMeta:
+      enquirer:
+        optional: true
+    dependencies:
+      cli-truncate: 2.1.0
+      colorette: 2.0.16
+      log-update: 4.0.0
+      p-map: 4.0.0
+      rfdc: 1.3.0
+      rxjs: 7.5.5
+      through: 2.3.8
+      wrap-ansi: 7.0.0
     dev: true
 
   /loader-runner/4.2.0:
@@ -4639,6 +4910,16 @@ packages:
       is-unicode-supported: 1.1.0
     dev: true
 
+  /log-update/4.0.0:
+    resolution: {integrity: sha1-WJ7NNSRx8qHAxXAodUOmTf0g4KE=, tarball: http://npm-registry.duowan.com/log-update/download/log-update-4.0.0.tgz}
+    engines: {node: '>=10'}
+    dependencies:
+      ansi-escapes: 4.3.2
+      cli-cursor: 3.1.0
+      slice-ansi: 4.0.0
+      wrap-ansi: 6.2.0
+    dev: true
+
   /loose-envify/1.4.0:
     resolution: {integrity: sha1-ce5R+nvkyuwaY4OffmgtgTLTDK8=, tarball: http://npm-registry.duowan.com/loose-envify/download/loose-envify-1.4.0.tgz}
     hasBin: true
@@ -4680,6 +4961,20 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /map-obj/1.0.1:
+    resolution: {integrity: sha1-2TPOuSBdgr3PSIb2dCvcK03qFG0=, tarball: http://npm-registry.duowan.com/map-obj/download/map-obj-1.0.1.tgz}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
+  /map-obj/4.3.0:
+    resolution: {integrity: sha1-kwT5Buk/qucIgNoQKp8d8OqLsFo=, tarball: http://npm-registry.duowan.com/map-obj/download/map-obj-4.3.0.tgz}
+    engines: {node: '>=8'}
+    dev: true
+
+  /mathml-tag-names/2.1.3:
+    resolution: {integrity: sha1-TdrdZzCOeAzxakdoWHjuJ7c2oKM=, tarball: http://npm-registry.duowan.com/mathml-tag-names/download/mathml-tag-names-2.1.3.tgz}
+    dev: true
+
   /mdn-data/2.0.14:
     resolution: {integrity: sha1-cRP8QoGRfWPOKbQ0RvcB5owlulA=, tarball: http://npm-registry.duowan.com/mdn-data/download/mdn-data-2.0.14.tgz}
     dev: true
@@ -4699,6 +4994,24 @@ packages:
   /memoize-one/6.0.0:
     resolution: {integrity: sha1-slkbhx7YKUiu5HJ9xqvO7qyMEEU=, tarball: http://npm-registry.duowan.com/memoize-one/download/memoize-one-6.0.0.tgz}
     dev: false
+
+  /meow/9.0.0:
+    resolution: {integrity: sha1-zZUQvFysne59A8c+4fmtlZ9Oo2Q=, tarball: http://npm-registry.duowan.com/meow/download/meow-9.0.0.tgz}
+    engines: {node: '>=10'}
+    dependencies:
+      '@types/minimist': 1.2.2
+      camelcase-keys: 6.2.2
+      decamelize: 1.2.0
+      decamelize-keys: 1.1.0
+      hard-rejection: 2.1.0
+      minimist-options: 4.1.0
+      normalize-package-data: 3.0.3
+      read-pkg-up: 7.0.1
+      redent: 3.0.0
+      trim-newlines: 3.0.1
+      type-fest: 0.18.1
+      yargs-parser: 20.2.9
+    dev: true
 
   /merge-descriptors/1.0.1:
     resolution: {integrity: sha1-sAqqVW3YtEVoFQ7J0blT8/kMu2E=, tarball: http://npm-registry.duowan.com/merge-descriptors/download/merge-descriptors-1.0.1.tgz}
@@ -4749,6 +5062,11 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
+  /min-indent/1.0.1:
+    resolution: {integrity: sha1-pj9oFnOzBXH76LwlaGrnRu76mGk=, tarball: http://npm-registry.duowan.com/min-indent/download/min-indent-1.0.1.tgz}
+    engines: {node: '>=4'}
+    dev: true
+
   /mini-css-extract-plugin/2.6.0_webpack@5.69.1:
     resolution: {integrity: sha1-V4rrx/wU0ywK0wTCw08Ir0RnP14=, tarball: http://npm-registry.duowan.com/mini-css-extract-plugin/download/mini-css-extract-plugin-2.6.0.tgz}
     engines: {node: '>= 12.13.0'}
@@ -4767,6 +5085,15 @@ packages:
     resolution: {integrity: sha1-Gc0ZS/0+Qo8EmnCBfAONiatL41s=, tarball: http://npm-registry.duowan.com/minimatch/download/minimatch-3.1.2.tgz}
     dependencies:
       brace-expansion: 1.1.11
+    dev: true
+
+  /minimist-options/4.1.0:
+    resolution: {integrity: sha1-wGVXE8U6ii69d/+iR9NCxA8BBhk=, tarball: http://npm-registry.duowan.com/minimist-options/download/minimist-options-4.1.0.tgz}
+    engines: {node: '>= 6'}
+    dependencies:
+      arrify: 1.0.1
+      is-plain-obj: 1.1.0
+      kind-of: 6.0.3
     dev: true
 
   /minimist/1.2.5:
@@ -4884,6 +5211,25 @@ packages:
     resolution: {integrity: sha1-cTn+ceL08RtH1NKYaq+MSGmeDAE=, tarball: http://npm-registry.duowan.com/node-releases/download/node-releases-2.0.2.tgz}
     dev: true
 
+  /normalize-package-data/2.5.0:
+    resolution: {integrity: sha1-5m2xg4sgDB38IzIl0SyzZSDiNKg=, tarball: http://npm-registry.duowan.com/normalize-package-data/download/normalize-package-data-2.5.0.tgz}
+    dependencies:
+      hosted-git-info: 2.8.9
+      resolve: 1.22.0
+      semver: 5.7.1
+      validate-npm-package-license: 3.0.4
+    dev: true
+
+  /normalize-package-data/3.0.3:
+    resolution: {integrity: sha1-28w+LaWVCaCYNCKITNFy7v36Ul4=, tarball: http://npm-registry.duowan.com/normalize-package-data/download/normalize-package-data-3.0.3.tgz}
+    engines: {node: '>=10'}
+    dependencies:
+      hosted-git-info: 4.1.0
+      is-core-module: 2.8.1
+      semver: 7.3.5
+      validate-npm-package-license: 3.0.4
+    dev: true
+
   /normalize-path/3.0.0:
     resolution: {integrity: sha1-Dc1p/yOhybEf0JeDFmRKA4ghamU=, tarball: http://npm-registry.duowan.com/normalize-path/download/normalize-path-3.0.0.tgz}
     engines: {node: '>=0.10.0'}
@@ -4892,6 +5238,10 @@ packages:
   /normalize-range/0.1.2:
     resolution: {integrity: sha1-LRDAa9/TEuqXd2laTShDlFa3WUI=, tarball: http://npm-registry.duowan.com/normalize-range/download/normalize-range-0.1.2.tgz}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /normalize-selector/0.2.0:
+    resolution: {integrity: sha1-0LFF62kRicY6eNIB3E/bEpPvDAM=, tarball: http://npm-registry.duowan.com/normalize-selector/download/normalize-selector-0.2.0.tgz}
     dev: true
 
   /normalize.css/8.0.1:
@@ -5166,7 +5516,7 @@ packages:
     resolution: {integrity: sha1-x2/Gbe5UIxyWKyK8yKcs8vmXU80=, tarball: http://npm-registry.duowan.com/parse-json/download/parse-json-5.2.0.tgz}
     engines: {node: '>=8'}
     dependencies:
-      '@babel/code-frame': 7.12.11
+      '@babel/code-frame': 7.16.7
       error-ex: 1.3.2
       json-parse-even-better-errors: 2.3.1
       lines-and-columns: 1.2.4
@@ -5292,6 +5642,15 @@ packages:
       mkdirp: 0.5.5
     dev: true
 
+  /postcss-less/6.0.0_postcss@8.4.8:
+    resolution: {integrity: sha1-Rjs0xg9TtkjCN/VprrLgkUnYWvQ=, tarball: http://npm-registry.duowan.com/postcss-less/download/postcss-less-6.0.0.tgz}
+    engines: {node: '>=12'}
+    peerDependencies:
+      postcss: ^8.3.5
+    dependencies:
+      postcss: 8.4.8
+    dev: true
+
   /postcss-loader/6.2.1_postcss@8.4.8+webpack@5.69.1:
     resolution: {integrity: sha1-CJX3NGsXAhA9MP3Gbk1JSpPACO8=, tarball: http://npm-registry.duowan.com/postcss-loader/download/postcss-loader-6.2.1.tgz}
     engines: {node: '>= 12.13.0'}
@@ -5304,6 +5663,10 @@ packages:
       postcss: 8.4.8
       semver: 7.3.5
       webpack: 5.69.1_webpack-cli@4.9.2
+    dev: true
+
+  /postcss-media-query-parser/0.2.3:
+    resolution: {integrity: sha1-J7Ocb02U+Bsac7j3Y1HGCeXO8kQ=, tarball: http://npm-registry.duowan.com/postcss-media-query-parser/download/postcss-media-query-parser-0.2.3.tgz}
     dev: true
 
   /postcss-modules-extract-imports/3.0.0_postcss@8.4.8:
@@ -5354,12 +5717,33 @@ packages:
       postcss: 8.4.8
     dev: true
 
+  /postcss-resolve-nested-selector/0.1.1:
+    resolution: {integrity: sha1-Kcy8fDfe36wwTp//C/FZaz9qDk4=, tarball: http://npm-registry.duowan.com/postcss-resolve-nested-selector/download/postcss-resolve-nested-selector-0.1.1.tgz}
+    dev: true
+
+  /postcss-safe-parser/6.0.0_postcss@8.4.8:
+    resolution: {integrity: sha1-u0wpiUFxqUvFyZa5owMX70Aq2qE=, tarball: http://npm-registry.duowan.com/postcss-safe-parser/download/postcss-safe-parser-6.0.0.tgz}
+    engines: {node: '>=12.0'}
+    peerDependencies:
+      postcss: ^8.3.3
+    dependencies:
+      postcss: 8.4.8
+    dev: true
+
   /postcss-selector-parser/6.0.9:
     resolution: {integrity: sha1-7nHDuf9j2c0TCDiHbBOi7BqZKy8=, tarball: http://npm-registry.duowan.com/postcss-selector-parser/download/postcss-selector-parser-6.0.9.tgz}
     engines: {node: '>=4'}
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
+    dev: true
+
+  /postcss-sorting/7.0.1_postcss@8.4.8:
+    resolution: {integrity: sha1-kjtSaEUc8tk+v4g14XplN3VwSaU=, tarball: http://npm-registry.duowan.com/postcss-sorting/download/postcss-sorting-7.0.1.tgz}
+    peerDependencies:
+      postcss: ^8.3.9
+    dependencies:
+      postcss: 8.4.8
     dev: true
 
   /postcss-value-parser/4.2.0:
@@ -5445,6 +5829,11 @@ packages:
 
   /queue-microtask/1.2.3:
     resolution: {integrity: sha1-SSkii7xyTfrEPg77BYyve2z7YkM=, tarball: http://npm-registry.duowan.com/queue-microtask/download/queue-microtask-1.2.3.tgz}
+    dev: true
+
+  /quick-lru/4.0.1:
+    resolution: {integrity: sha1-W4h48ROlgheEjGSCAmxz4bpXcn8=, tarball: http://npm-registry.duowan.com/quick-lru/download/quick-lru-4.0.1.tgz}
+    engines: {node: '>=8'}
     dev: true
 
   /randombytes/2.1.0:
@@ -5987,6 +6376,27 @@ packages:
       scheduler: 0.20.2
     dev: false
 
+  /react-i18next/11.15.6_f94be6b4dd1edc1d8608af374b838bd6:
+    resolution: {integrity: sha1-aTQw++5ax9B3S9iGg1ddYq2ySvs=, tarball: http://npm-registry.duowan.com/react-i18next/download/react-i18next-11.15.6.tgz}
+    peerDependencies:
+      i18next: '>= 19.0.0'
+      react: '>= 16.8.0'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.17.2
+      html-escaper: 2.0.2
+      html-parse-stringify: 3.0.1
+      i18next: 21.6.14
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha1-eJcppNw23imZ3BVt1sHZwYzqVqQ=, tarball: http://npm-registry.duowan.com/react-is/download/react-is-16.13.1.tgz}
 
@@ -6018,6 +6428,25 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: false
+
+  /read-pkg-up/7.0.1:
+    resolution: {integrity: sha1-86YTV1hFlzOuK5VjgFbhhU5+9Qc=, tarball: http://npm-registry.duowan.com/read-pkg-up/download/read-pkg-up-7.0.1.tgz}
+    engines: {node: '>=8'}
+    dependencies:
+      find-up: 4.1.0
+      read-pkg: 5.2.0
+      type-fest: 0.8.1
+    dev: true
+
+  /read-pkg/5.2.0:
+    resolution: {integrity: sha1-e/KVQ4yloz5WzTDgU7NO5yUMk8w=, tarball: http://npm-registry.duowan.com/read-pkg/download/read-pkg-5.2.0.tgz}
+    engines: {node: '>=8'}
+    dependencies:
+      '@types/normalize-package-data': 2.4.1
+      normalize-package-data: 2.5.0
+      parse-json: 5.2.0
+      type-fest: 0.6.0
+    dev: true
 
   /readable-stream/2.3.7:
     resolution: {integrity: sha1-Hsoc9xGu+BTAT2IlKjamL2yyO1c=, tarball: http://npm-registry.duowan.com/readable-stream/download/readable-stream-2.3.7.tgz}
@@ -6059,6 +6488,14 @@ packages:
     engines: {node: '>= 10.13.0'}
     dependencies:
       resolve: 1.22.0
+    dev: true
+
+  /redent/3.0.0:
+    resolution: {integrity: sha1-5Ve3mYMWu1PJ8fVvpiY1LGljBZ8=, tarball: http://npm-registry.duowan.com/redent/download/redent-3.0.0.tgz}
+    engines: {node: '>=8'}
+    dependencies:
+      indent-string: 4.0.0
+      strip-indent: 3.0.0
     dev: true
 
   /regenerate-unicode-properties/9.0.0:
@@ -6212,6 +6649,10 @@ packages:
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
     dev: true
 
+  /rfdc/1.3.0:
+    resolution: {integrity: sha1-0LfEQasnINBdxM8m4ByJYx2doIs=, tarball: http://npm-registry.duowan.com/rfdc/download/rfdc-1.3.0.tgz}
+    dev: true
+
   /rimraf/3.0.2:
     resolution: {integrity: sha1-8aVAK6YiCtUswSgrrBrjqkn9Bho=, tarball: http://npm-registry.duowan.com/rimraf/download/rimraf-3.0.2.tgz}
     hasBin: true
@@ -6300,7 +6741,6 @@ packages:
     resolution: {integrity: sha1-qVT5Ma66UI0we78Gnv8MAclhFvc=, tarball: http://npm-registry.duowan.com/semver/download/semver-5.7.1.tgz}
     hasBin: true
     dev: true
-    optional: true
 
   /semver/6.3.0:
     resolution: {integrity: sha1-7gpkyK9ejO6mdoexM3YeG+y9HT0=, tarball: http://npm-registry.duowan.com/semver/download/semver-6.3.0.tgz}
@@ -6429,6 +6869,15 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
+  /slice-ansi/3.0.0:
+    resolution: {integrity: sha1-Md3BCTCht+C2ewjJbC9Jt3p4l4c=, tarball: http://npm-registry.duowan.com/slice-ansi/download/slice-ansi-3.0.0.tgz}
+    engines: {node: '>=8'}
+    dependencies:
+      ansi-styles: 4.3.0
+      astral-regex: 2.0.0
+      is-fullwidth-code-point: 3.0.0
+    dev: true
+
   /slice-ansi/4.0.0:
     resolution: {integrity: sha1-UA6N0P1VsFgVCGJVsxla3ypF/ms=, tarball: http://npm-registry.duowan.com/slice-ansi/download/slice-ansi-4.0.0.tgz}
     engines: {node: '>=10'}
@@ -6436,6 +6885,14 @@ packages:
       ansi-styles: 4.3.0
       astral-regex: 2.0.0
       is-fullwidth-code-point: 3.0.0
+    dev: true
+
+  /slice-ansi/5.0.0:
+    resolution: {integrity: sha1-tzBjxXqpb5zYgWVLFSlNldKFxCo=, tarball: http://npm-registry.duowan.com/slice-ansi/download/slice-ansi-5.0.0.tgz}
+    engines: {node: '>=12'}
+    dependencies:
+      ansi-styles: 6.1.0
+      is-fullwidth-code-point: 4.0.0
     dev: true
 
   /snake-case/3.0.4:
@@ -6480,6 +6937,28 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
+  /spdx-correct/3.1.1:
+    resolution: {integrity: sha1-3s6BrJweZxPl99G28X1Gj6U9iak=, tarball: http://npm-registry.duowan.com/spdx-correct/download/spdx-correct-3.1.1.tgz}
+    dependencies:
+      spdx-expression-parse: 3.0.1
+      spdx-license-ids: 3.0.11
+    dev: true
+
+  /spdx-exceptions/2.3.0:
+    resolution: {integrity: sha1-PyjOGnegA3JoPq3kpDMYNSeiFj0=, tarball: http://npm-registry.duowan.com/spdx-exceptions/download/spdx-exceptions-2.3.0.tgz}
+    dev: true
+
+  /spdx-expression-parse/3.0.1:
+    resolution: {integrity: sha1-z3D1BILu/cmOPOCmgz5KU87rpnk=, tarball: http://npm-registry.duowan.com/spdx-expression-parse/download/spdx-expression-parse-3.0.1.tgz}
+    dependencies:
+      spdx-exceptions: 2.3.0
+      spdx-license-ids: 3.0.11
+    dev: true
+
+  /spdx-license-ids/3.0.11:
+    resolution: {integrity: sha1-UMDYxAoU7Bv0Sbrmmg6kaFqdn5U=, tarball: http://npm-registry.duowan.com/spdx-license-ids/download/spdx-license-ids-3.0.11.tgz}
+    dev: true
+
   /spdy-transport/3.0.0:
     resolution: {integrity: sha1-ANSGOmQArXXfkzYaFghgXl3NzzE=, tarball: http://npm-registry.duowan.com/spdy-transport/download/spdy-transport-3.0.0.tgz}
     dependencies:
@@ -6506,6 +6985,11 @@ packages:
       - supports-color
     dev: true
 
+  /specificity/0.4.1:
+    resolution: {integrity: sha1-qrXmRQEtsIuhguFRFlc40AiHsBk=, tarball: http://npm-registry.duowan.com/specificity/download/specificity-0.4.1.tgz}
+    hasBin: true
+    dev: true
+
   /sprintf-js/1.0.3:
     resolution: {integrity: sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=, tarball: http://npm-registry.duowan.com/sprintf-js/download/sprintf-js-1.0.3.tgz}
     dev: true
@@ -6519,6 +7003,11 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
+  /string-argv/0.3.1:
+    resolution: {integrity: sha1-leL77AQnrhkYSTX4FtdKqkxcGdo=, tarball: http://npm-registry.duowan.com/string-argv/download/string-argv-0.3.1.tgz}
+    engines: {node: '>=0.6.19'}
+    dev: true
+
   /string-convert/0.2.1:
     resolution: {integrity: sha1-aYLMMEn7tM2F+LJFaLnZvznu/5c=, tarball: http://npm-registry.duowan.com/string-convert/download/string-convert-0.2.1.tgz}
     dev: false
@@ -6530,6 +7019,15 @@ packages:
       emoji-regex: 8.0.0
       is-fullwidth-code-point: 3.0.0
       strip-ansi: 6.0.1
+    dev: true
+
+  /string-width/5.1.2:
+    resolution: {integrity: sha1-FPja7G2B5yIdKjV+Zoyrc728p5Q=, tarball: http://npm-registry.duowan.com/string-width/download/string-width-5.1.2.tgz}
+    engines: {node: '>=12'}
+    dependencies:
+      eastasianwidth: 0.2.0
+      emoji-regex: 9.2.2
+      strip-ansi: 7.0.1
     dev: true
 
   /string.prototype.matchall/4.0.6:
@@ -6595,6 +7093,13 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
+  /strip-indent/3.0.0:
+    resolution: {integrity: sha1-wy4c7pQLazQyx3G8LFS8znPNMAE=, tarball: http://npm-registry.duowan.com/strip-indent/download/strip-indent-3.0.0.tgz}
+    engines: {node: '>=8'}
+    dependencies:
+      min-indent: 1.0.1
+    dev: true
+
   /strip-json-comments/3.1.1:
     resolution: {integrity: sha1-MfEoGzgyYwQ0gxwxDAHMzajL4AY=, tarball: http://npm-registry.duowan.com/strip-json-comments/download/strip-json-comments-3.1.1.tgz}
     engines: {node: '>=8'}
@@ -6607,6 +7112,115 @@ packages:
       webpack: ^5.0.0
     dependencies:
       webpack: 5.69.1_webpack-cli@4.9.2
+    dev: true
+
+  /style-search/0.1.0:
+    resolution: {integrity: sha1-eVjHk+R+MuB9K1yv5cC/jhLneQI=, tarball: http://npm-registry.duowan.com/style-search/download/style-search-0.1.0.tgz}
+    dev: true
+
+  /stylelint-config-css-modules/3.0.0_stylelint@14.5.3:
+    resolution: {integrity: sha1-RBvcp30so8uXhSQTT9/rj1HCNu4=, tarball: http://npm-registry.duowan.com/stylelint-config-css-modules/download/stylelint-config-css-modules-3.0.0.tgz}
+    peerDependencies:
+      stylelint: 14.x
+    dependencies:
+      stylelint: 14.5.3
+    dev: true
+
+  /stylelint-config-prettier/9.0.3_stylelint@14.5.3:
+    resolution: {integrity: sha1-Dczr7/NZ3MOTySKRhECLCJZNVhw=, tarball: http://npm-registry.duowan.com/stylelint-config-prettier/download/stylelint-config-prettier-9.0.3.tgz}
+    engines: {node: '>= 12'}
+    hasBin: true
+    peerDependencies:
+      stylelint: '>=11.0.0'
+    dependencies:
+      stylelint: 14.5.3
+    dev: true
+
+  /stylelint-config-property-sort-order-smacss/8.0.0_stylelint@14.5.3:
+    resolution: {integrity: sha1-bpQVuroBWoLqt4bzsEYmZqTqHzw=, tarball: http://npm-registry.duowan.com/stylelint-config-property-sort-order-smacss/download/stylelint-config-property-sort-order-smacss-8.0.0.tgz}
+    peerDependencies:
+      stylelint: ^14.0.0
+    dependencies:
+      css-property-sort-order-smacss: 2.1.3
+      stylelint: 14.5.3
+      stylelint-order: 5.0.0_stylelint@14.5.3
+    dev: true
+
+  /stylelint-config-recommended/7.0.0_stylelint@14.5.3:
+    resolution: {integrity: sha1-dJc3Kug6t6b//BjX17QkxkgK4V4=, tarball: http://npm-registry.duowan.com/stylelint-config-recommended/download/stylelint-config-recommended-7.0.0.tgz}
+    peerDependencies:
+      stylelint: ^14.4.0
+    dependencies:
+      stylelint: 14.5.3
+    dev: true
+
+  /stylelint-config-standard/25.0.0_stylelint@14.5.3:
+    resolution: {integrity: sha1-LJFphOZlXUDW6HSLGbqoYDtoC/8=, tarball: http://npm-registry.duowan.com/stylelint-config-standard/download/stylelint-config-standard-25.0.0.tgz}
+    peerDependencies:
+      stylelint: ^14.4.0
+    dependencies:
+      stylelint: 14.5.3
+      stylelint-config-recommended: 7.0.0_stylelint@14.5.3
+    dev: true
+
+  /stylelint-order/5.0.0_stylelint@14.5.3:
+    resolution: {integrity: sha1-q9IPa4WsZAd0y+QOcNP+nG/fRAA=, tarball: http://npm-registry.duowan.com/stylelint-order/download/stylelint-order-5.0.0.tgz}
+    peerDependencies:
+      stylelint: ^14.0.0
+    dependencies:
+      postcss: 8.4.8
+      postcss-sorting: 7.0.1_postcss@8.4.8
+      stylelint: 14.5.3
+    dev: true
+
+  /stylelint/14.5.3:
+    resolution: {integrity: sha1-EDtmcBKLo96mn+OhoHxKXT4ONFA=, tarball: http://npm-registry.duowan.com/stylelint/download/stylelint-14.5.3.tgz}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    hasBin: true
+    dependencies:
+      balanced-match: 2.0.0
+      colord: 2.9.2
+      cosmiconfig: 7.0.1
+      css-functions-list: 3.0.1
+      debug: 4.3.3
+      execall: 2.0.0
+      fast-glob: 3.2.11
+      fastest-levenshtein: 1.0.12
+      file-entry-cache: 6.0.1
+      get-stdin: 8.0.0
+      global-modules: 2.0.0
+      globby: 11.1.0
+      globjoin: 0.1.4
+      html-tags: 3.1.0
+      ignore: 5.2.0
+      import-lazy: 4.0.0
+      imurmurhash: 0.1.4
+      is-plain-object: 5.0.0
+      known-css-properties: 0.24.0
+      mathml-tag-names: 2.1.3
+      meow: 9.0.0
+      micromatch: 4.0.4
+      normalize-path: 3.0.0
+      normalize-selector: 0.2.0
+      picocolors: 1.0.0
+      postcss: 8.4.8
+      postcss-media-query-parser: 0.2.3
+      postcss-resolve-nested-selector: 0.1.1
+      postcss-safe-parser: 6.0.0_postcss@8.4.8
+      postcss-selector-parser: 6.0.9
+      postcss-value-parser: 4.2.0
+      resolve-from: 5.0.0
+      specificity: 0.4.1
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+      style-search: 0.1.0
+      supports-hyperlinks: 2.2.0
+      svg-tags: 1.0.0
+      table: 6.8.0
+      v8-compile-cache: 2.3.0
+      write-file-atomic: 4.0.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /supports-color/5.5.0:
@@ -6630,6 +7244,19 @@ packages:
       has-flag: 4.0.0
     dev: true
 
+  /supports-color/9.2.1:
+    resolution: {integrity: sha1-WZ3J1FrPdMYXbg2IC6sdfXGP6JE=, tarball: http://npm-registry.duowan.com/supports-color/download/supports-color-9.2.1.tgz}
+    engines: {node: '>=12'}
+    dev: true
+
+  /supports-hyperlinks/2.2.0:
+    resolution: {integrity: sha1-T3e0JIh2WJF3S3DHm6vYf5vVlLs=, tarball: http://npm-registry.duowan.com/supports-hyperlinks/download/supports-hyperlinks-2.2.0.tgz}
+    engines: {node: '>=8'}
+    dependencies:
+      has-flag: 4.0.0
+      supports-color: 7.2.0
+    dev: true
+
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha1-btpL00SjyUrqN21MwxvHcxEDngk=, tarball: http://npm-registry.duowan.com/supports-preserve-symlinks-flag/download/supports-preserve-symlinks-flag-1.0.0.tgz}
     engines: {node: '>= 0.4'}
@@ -6637,6 +7264,10 @@ packages:
 
   /svg-parser/2.0.4:
     resolution: {integrity: sha1-/cLinhOVFzYUC3bLEiyO5mMOtrU=, tarball: http://npm-registry.duowan.com/svg-parser/download/svg-parser-2.0.4.tgz}
+    dev: true
+
+  /svg-tags/1.0.0:
+    resolution: {integrity: sha1-WPcc7jvVGbWdSyqEO2x95krAR2Q=, tarball: http://npm-registry.duowan.com/svg-tags/download/svg-tags-1.0.0.tgz}
     dev: true
 
   /svgo/2.8.0:
@@ -6750,6 +7381,11 @@ packages:
     engines: {node: '>=0.6'}
     dev: true
 
+  /trim-newlines/3.0.1:
+    resolution: {integrity: sha1-Jgpdli2LdSQlsy86fbDcrNF2wUQ=, tarball: http://npm-registry.duowan.com/trim-newlines/download/trim-newlines-3.0.1.tgz}
+    engines: {node: '>=8'}
+    dev: true
+
   /ts-loader/9.2.7_typescript@4.6.2+webpack@5.69.1:
     resolution: {integrity: sha1-lIZUCZypaZK2LsR72c7lYyAG4QE=, tarball: http://npm-registry.duowan.com/ts-loader/download/ts-loader-9.2.7.tgz}
     engines: {node: '>=12.0.0'}
@@ -6799,6 +7435,11 @@ packages:
       prelude-ls: 1.2.1
     dev: true
 
+  /type-fest/0.18.1:
+    resolution: {integrity: sha1-20vBUaSiz07r+a3V23VQjbbMhB8=, tarball: http://npm-registry.duowan.com/type-fest/download/type-fest-0.18.1.tgz}
+    engines: {node: '>=10'}
+    dev: true
+
   /type-fest/0.20.2:
     resolution: {integrity: sha1-G/IH9LKPkVg2ZstfvTJ4hzAc1fQ=, tarball: http://npm-registry.duowan.com/type-fest/download/type-fest-0.20.2.tgz}
     engines: {node: '>=10'}
@@ -6807,6 +7448,16 @@ packages:
   /type-fest/0.21.3:
     resolution: {integrity: sha1-0mCiSwGYQ24TP6JqUkptZfo7Ljc=, tarball: http://npm-registry.duowan.com/type-fest/download/type-fest-0.21.3.tgz}
     engines: {node: '>=10'}
+    dev: true
+
+  /type-fest/0.6.0:
+    resolution: {integrity: sha1-jSojcNPfiG61yQraHFv2GIrPg4s=, tarball: http://npm-registry.duowan.com/type-fest/download/type-fest-0.6.0.tgz}
+    engines: {node: '>=8'}
+    dev: true
+
+  /type-fest/0.8.1:
+    resolution: {integrity: sha1-CeJJ696FHTseSNJ8EFREZn8XuD0=, tarball: http://npm-registry.duowan.com/type-fest/download/type-fest-0.8.1.tgz}
+    engines: {node: '>=8'}
     dev: true
 
   /type-is/1.6.18:
@@ -6932,10 +7583,22 @@ packages:
     engines: {node: '>= 10.13.0'}
     dev: true
 
+  /validate-npm-package-license/3.0.4:
+    resolution: {integrity: sha1-/JH2uce6FchX9MssXe/uw51PQQo=, tarball: http://npm-registry.duowan.com/validate-npm-package-license/download/validate-npm-package-license-3.0.4.tgz}
+    dependencies:
+      spdx-correct: 3.1.1
+      spdx-expression-parse: 3.0.1
+    dev: true
+
   /vary/1.1.2:
     resolution: {integrity: sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=, tarball: http://npm-registry.duowan.com/vary/download/vary-1.1.2.tgz}
     engines: {node: '>= 0.8'}
     dev: true
+
+  /void-elements/3.1.0:
+    resolution: {integrity: sha1-YU9/v42AHwu18GYfWy9XhXUOTwk=, tarball: http://npm-registry.duowan.com/void-elements/download/void-elements-3.1.0.tgz}
+    engines: {node: '>=0.10.0'}
+    dev: false
 
   /watchpack/2.3.1:
     resolution: {integrity: sha1-QgDZRHtAEVbuyndn7mEPiAm8nSU=, tarball: http://npm-registry.duowan.com/watchpack/download/watchpack-2.3.1.tgz}
@@ -7163,8 +7826,34 @@ packages:
     resolution: {integrity: sha1-J1hIEIkUVqQXHI0CJkQa3pDLyus=, tarball: http://npm-registry.duowan.com/wordwrap/download/wordwrap-1.0.0.tgz}
     dev: true
 
+  /wrap-ansi/6.2.0:
+    resolution: {integrity: sha1-6Tk7oHEC5skaOyIUePAlfNKFblM=, tarball: http://npm-registry.duowan.com/wrap-ansi/download/wrap-ansi-6.2.0.tgz}
+    engines: {node: '>=8'}
+    dependencies:
+      ansi-styles: 4.3.0
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+    dev: true
+
+  /wrap-ansi/7.0.0:
+    resolution: {integrity: sha1-Z+FFz/UQpqaYS98RUpEdadLrnkM=, tarball: http://npm-registry.duowan.com/wrap-ansi/download/wrap-ansi-7.0.0.tgz}
+    engines: {node: '>=10'}
+    dependencies:
+      ansi-styles: 4.3.0
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+    dev: true
+
   /wrappy/1.0.2:
     resolution: {integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=, tarball: http://npm-registry.duowan.com/wrappy/download/wrappy-1.0.2.tgz}
+    dev: true
+
+  /write-file-atomic/4.0.1:
+    resolution: {integrity: sha1-n6ozqWTByF/2+Em4C0KojCxTfI8=, tarball: http://npm-registry.duowan.com/write-file-atomic/download/write-file-atomic-4.0.1.tgz}
+    engines: {node: ^12.13.0 || ^14.15.0 || >=16}
+    dependencies:
+      imurmurhash: 0.1.4
+      signal-exit: 3.0.7
     dev: true
 
   /ws/8.5.0:
@@ -7187,4 +7876,9 @@ packages:
   /yaml/1.10.2:
     resolution: {integrity: sha1-IwHF/78StGfejaIzOkWeKeeSDks=, tarball: http://npm-registry.duowan.com/yaml/download/yaml-1.10.2.tgz}
     engines: {node: '>= 6'}
+    dev: true
+
+  /yargs-parser/20.2.9:
+    resolution: {integrity: sha1-LrfcOwKJcY/ClfNidThFxBoMlO4=, tarball: http://npm-registry.duowan.com/yargs-parser/download/yargs-parser-20.2.9.tgz}
+    engines: {node: '>=10'}
     dev: true
