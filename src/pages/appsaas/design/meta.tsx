@@ -1,3 +1,3 @@
 export default {
-  isLayoutPage: false,
+  isLayoutPage: true,
 }

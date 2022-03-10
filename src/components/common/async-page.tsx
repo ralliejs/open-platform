@@ -8,7 +8,7 @@ interface Props {
 }
 
 const AsyncPage: React.FunctionComponent<Props> = (props) => {
-  const Component = React.lazy(() => import(props.src))
+  const Component = React.lazy(() => import('' + props.src))
   return <Component />
 }
 
