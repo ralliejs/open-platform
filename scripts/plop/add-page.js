@@ -1,30 +1,4 @@
-// plop:
-
 module.exports = (plop) => {
-  plop.setGenerator('store', {
-    description: '添加一个全局store',
-    prompts: [
-      {
-        type: 'input',
-        name: 'name',
-        message: '请输入store名称',
-        validate: (value) => {
-          if (!value) {
-            return 'store名称必填'
-          }
-          return true
-        },
-      },
-    ],
-    actions: [
-      {
-        type: 'add',
-        path: '../src/stores/{{ dashCase name }}.ts',
-        templateFile: '../template/store.hbs',
-      },
-    ],
-  })
-
   plop.setGenerator('page', {
     description: '添加一个页面',
     prompts: [
@@ -60,13 +34,13 @@ module.exports = (plop) => {
     actions: [
       {
         type: 'add',
-        path: '../src/pages/{{ path }}/index.tsx',
-        templateFile: '../template/page.hbs',
+        path: '../../src/pages/{{ path }}/index.tsx',
+        templateFile: '../../template/page.hbs',
       },
       {
         type: 'add',
-        path: '../src/pages/{{ path }}/meta.tsx',
-        templateFile: '../template/meta.hbs',
+        path: '../../src/pages/{{ path }}/meta.tsx',
+        templateFile: '../../template/meta.hbs',
       },
     ],
   })

@@ -38,7 +38,7 @@
     // 路径别名
     "paths": {
       "~/*": ["./src/*"],
-      "@/*": ["./src/components/business/*"]
+      "@/*": ["./src/components/*"]
     }
   },
   "include": ["src"]

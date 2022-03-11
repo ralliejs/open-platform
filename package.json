@@ -14,7 +14,7 @@
     "build:gray": "cross-env NODE_ENV=production APP_ENV=gray webpack --config ./config/webpack.config.js",
     "build:prod": "cross-env NODE_ENV=production APP_ENV=prod webpack --config ./config/webpack.config.js",
     "build": "pnpm build:prod",
-    "addfile": "pnpm plop --plopfile ./scripts/plopfile.js",
+    "addfile": "pnpm plop --plopfile ./scripts/plop/index.js",
     "prepare": "husky install",
     "precommit": "lint-staged"
   },

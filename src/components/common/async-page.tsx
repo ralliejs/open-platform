@@ -4,12 +4,16 @@
 import React from 'react'
 
 interface Props {
-  src: string
+  path: string
 }
 
 const AsyncPage: React.FunctionComponent<Props> = (props) => {
-  const Component = React.lazy(() => import('' + props.src))
-  return <Component />
+  const Component = React.lazy(() => import('../../pages' + props.path))
+  return (
+    <React.Suspense fallback="loading">
+      <Component />
+    </React.Suspense>
+  )
 }
 
 export default AsyncPage

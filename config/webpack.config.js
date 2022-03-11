@@ -35,7 +35,7 @@ const config = {
   },
   devServer: {
     hot: true,
-    open: true,
+    open: ['/#/'],
     host: 'localhost',
   },
   devtool: isProduction && 'eval-cheap-source-map',
@@ -43,7 +43,7 @@ const config = {
     extensions: ['.tsx', '.ts', '.jsx', '.js', '.json', '.svg'],
     alias: {
       '~': path.resolve(__dirname, '../src'), // src根目录别名
-      '@': path.resolve(__dirname, '.../src/components/business'), // 业务组件目录别名
+      '@': path.resolve(__dirname, '../src/components'), // 组件目录别名
     },
   },
   externals: {}, // 外部依赖库

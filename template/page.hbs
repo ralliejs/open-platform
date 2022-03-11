@@ -3,11 +3,17 @@
  */
 
 import React from 'react'
+{{#if isLayoutPage}}
+import { Outlet } from 'react-router-dom'
+{{/if}}
 
 const {{ properCase name }}: React.FunctionComponent = () => {
   return (
     <div>
       {{ properCase name }}
+      {{#if isLayoutPage}}
+      <Outlet />
+      {{/if}}
     </div>
   )
 }
