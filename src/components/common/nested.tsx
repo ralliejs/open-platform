@@ -8,17 +8,17 @@ interface RecursiveComponentProps {
   children?: React.ReactNode
 }
 
-const Recursive: React.FunctionComponent<RecursiveComponentProps> = ({ components = [], children = null }) => {
+const Nested: React.FunctionComponent<RecursiveComponentProps> = ({ components = [], children = null }) => {
   if (components.length === 0) {
     return <>{children}</>
   } else {
     const [ParentComponent, ...childrenComponents] = components
     return (
       <ParentComponent>
-        <Recursive components={childrenComponents}>{children}</Recursive>
+        <Nested components={childrenComponents}>{children}</Nested>
       </ParentComponent>
     )
   }
 }
 
-export default React.memo(Recursive)
+export default React.memo(Nested)

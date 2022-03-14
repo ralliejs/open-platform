@@ -8,7 +8,7 @@ module.exports = (plop) => {
         message: '请输入store名称',
         validate: (value) => {
           if (!value) {
-            return 'store名称必填'
+            return 'store名称不能为空'
           }
           return true
         },
@@ -16,11 +16,11 @@ module.exports = (plop) => {
       {
         type: 'input',
         name: 'path',
-        message: '请输入新增store在stores文件夹中的路径(默认为stores根路径)',
+        message: '请输入新增store在stores文件夹中的路径',
         default: '/',
         validate: (value) => {
-          if (!value.startsWith('/')) {
-            return '路径名必须以‘/’开头'
+          if (!value.trim()) {
+            return '路径不能为空'
           }
           return true
         },
@@ -29,7 +29,7 @@ module.exports = (plop) => {
     actions: [
       {
         type: 'add',
-        path: '../../src/stores{{ path }}/{{ dashCase name }}.ts',
+        path: '../../src/stores/{{ path }}/{{ dashCase name }}.ts',
         templateFile: '../../template/store.hbs',
       },
     ],

@@ -7,8 +7,8 @@ module.exports = (plop) => {
         name: 'path',
         message: '请输入页面的路由',
         validate: (value) => {
-          if (!value) {
-            return '页面路由必填'
+          if (!value.trim()) {
+            return '页面路由不能为空'
           }
           return true
         },
@@ -18,8 +18,8 @@ module.exports = (plop) => {
         name: 'name',
         message: '请输入页面组件名',
         validate: (value) => {
-          if (!value) {
-            return '页面组件名必填'
+          if (!value.trim()) {
+            return '页面组件名不能为空'
           }
           return true
         },
@@ -31,17 +31,20 @@ module.exports = (plop) => {
         default: false,
       },
     ],
-    actions: [
-      {
-        type: 'add',
-        path: '../../src/pages/{{ path }}/index.tsx',
-        templateFile: '../../template/page.hbs',
-      },
-      {
-        type: 'add',
-        path: '../../src/pages/{{ path }}/meta.tsx',
-        templateFile: '../../template/meta.hbs',
-      },
-    ],
+    actions: () => {
+      const actions = [
+        {
+          type: 'add',
+          path: '../../src/pages/{{ path }}/index.tsx',
+          templateFile: '../../template/page.hbs',
+        },
+        {
+          type: 'add',
+          path: '../../src/pages/{{ path }}/meta.tsx',
+          templateFile: '../../template/meta.hbs',
+        },
+      ]
+      return actions
+    },
   })
 }

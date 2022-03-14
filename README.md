@@ -1,15 +1,8 @@
-# 🚀 Welcome to your new awesome project!
+# React temple
 
-This project has been created using **webpack-cli**, you can now run
+- [x] 自动注册路由
+- [x] 自动注册store
+- [x] plop模版
+- [ ] i18n
+- [ ] axios
 
-```
-npm run build
-```
-
-or
-
-```
-yarn build
-```
-
-to bundle your application

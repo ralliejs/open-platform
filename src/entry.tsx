@@ -1,18 +1,14 @@
-import React from 'react'
 import ReactDOM from 'react-dom'
-import StoresProvider from '~/components/common/stores-provider'
-import Recursive from '~/components/common/recursive'
-import Routes from '~/components/common/routes'
-import { HashRouter } from 'react-router-dom'
+import StoresProvider from '~/components/system/stores-provider'
+import Nested from '~/components/common/nested'
+import Routes, { Router } from '~/components/system/routes'
 
 import '~/styles/index.less'
 import 'normalize.css'
 
 ReactDOM.render(
-  <React.Suspense fallback={null}>
-    <Recursive components={[StoresProvider, HashRouter]}>
-      <Routes />
-    </Recursive>
-  </React.Suspense>,
+  <Nested components={[StoresProvider, Router]}>
+    <Routes />
+  </Nested>,
   document.getElementById('root'),
 )
