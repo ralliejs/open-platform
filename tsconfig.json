@@ -4,6 +4,7 @@
       - ts官方handbook: https://www.tslang.cn/docs/handbook/compiler-options.html
       - 掌握ts：https://juejin.cn/post/6844904178234458120
     */
+    "lib": ["ESNext", "DOM"],
     // 编译为es5
     "target": "es5",
     // jsx语法编译为React.createElement
@@ -23,7 +24,7 @@
     // 不开启所有严格的类型检查
     "strict": false,
     // 不允许隐式的any
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     // 允许把null、undefined赋值给其他类型的变量
     "strictNullChecks": false,
     // 不允许this有隐式的any

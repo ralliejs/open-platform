@@ -5,6 +5,6 @@ import Nested from '~/components/common/nested'
 const importFile = require.context('~/stores', true, /\.(tsx|ts|jsx|js)$/)
 const files = importFile.keys()
 const providers = files.map((item) => importFile(item)?.default?.Provider).filter(Boolean)
-const StoresProvider: React.FunctionComponent<{}> = ({ children }) => <Nested components={providers}>{children}</Nested>
+const StoresProvider: React.FunctionComponent<any> = ({ children }) => <Nested components={providers}>{children}</Nested>
 
 export default StoresProvider

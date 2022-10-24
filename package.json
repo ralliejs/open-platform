@@ -22,8 +22,8 @@
   "license": "ISC",
   "devDependencies": {
     "@svgr/webpack": "^6.2.1",
-    "@types/react": "^17.0.39",
-    "@types/react-dom": "^17.0.13",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
     "@types/styled-components": "^5.1.24",
     "@types/webpack-env": "^1.16.3",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
@@ -40,6 +40,7 @@
     "eslint-plugin-promise": "^5.0.0",
     "eslint-plugin-react": "^7.29.2",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "fs-extra": "^10.1.0",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^7.0.4",
     "less": "^4.1.2",
@@ -71,13 +72,14 @@
     "i18next": "^21.6.14",
     "immer": "^9.0.12",
     "normalize.css": "^8.0.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-i18next": "^11.15.6",
+    "react-is": "^18.1.0",
     "react-router-dom": "^6.2.2",
     "styled-components": "^5.3.3",
     "unstated-next": "^1.1.0",
-    "use-immer": "^0.6.0"
+    "use-immer": "^0.7.0"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
