@@ -1,14 +1,26 @@
-import ReactDOM from 'react-dom'
-import StoresProvider from '~/components/system/stores-provider'
-import Nested from '~/components/common/nested'
-import Routes, { Router } from '~/components/system/routes'
+import { registerBlock } from '@rallie/block'
+import { core } from '~/blocks/core'
+import React from 'react'
+import * as ReactDOM from 'react-dom'
+import * as ReactRouterDom from 'react-router-dom'
 
-import '~/styles/index.less'
-import 'normalize.css'
+registerBlock(core)
+  .initState({
+    container: null,
+    home: null,
+    applications: [],
+  })
+  .export({
+    React,
+    ReactDOM,
+    ReactRouterDom,
+  })
+  .onActivate(async () => {
+    await import('./app')
+  })
 
-ReactDOM.render(
-  <Nested components={[StoresProvider, Router]}>
-    <Routes />
-  </Nested>,
-  document.getElementById('root'),
-)
+core.run((env) => {
+  if (env.isEntry) {
+    core.activate(core.name)
+  }
+})

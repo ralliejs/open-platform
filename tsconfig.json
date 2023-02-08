@@ -24,7 +24,7 @@
     // 不开启所有严格的类型检查
     "strict": false,
     // 不允许隐式的any
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     // 允许把null、undefined赋值给其他类型的变量
     "strictNullChecks": false,
     // 不允许this有隐式的any
@@ -38,8 +38,9 @@
     "baseUrl": ".",
     // 路径别名
     "paths": {
+      "@/*": ["./src/components/*"],
+      "#/*": ["./src/views/*"],
       "~/*": ["./src/*"],
-      "@/*": ["./src/components/*"]
     }
   },
   "include": ["src"]

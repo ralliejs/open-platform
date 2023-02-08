@@ -37,13 +37,17 @@ const config = {
     hot: true,
     open: ['/#/'],
     host: 'localhost',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   },
   devtool: isProduction && 'eval-cheap-source-map',
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js', '.json', '.svg'],
     alias: {
-      '~': path.resolve(__dirname, '../src'), // src根目录别名
       '@': path.resolve(__dirname, '../src/components'), // 组件目录别名
+      '#': path.resolve(__dirname, '../src/views'), // 页面目录别名
+      '~': path.resolve(__dirname, '../src'), // src根目录别名
     },
   },
   externals: {}, // 外部依赖库
