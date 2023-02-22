@@ -6,21 +6,23 @@ import * as ReactRouterDom from 'react-router-dom'
 
 registerBlock(core)
   .initState({
-    container: null,
+    root: null,
     home: null,
     applications: [],
-  })
-  .export({
-    React,
-    ReactDOM,
-    ReactRouterDom,
+    locale: 'zh-cn',
   })
   .onActivate(async () => {
     await import('./app')
   })
 
-core.run((env) => {
+window.React = React
+window.ReactDOM = ReactDOM
+// @ts-ignore
+window.ReactRouterDom = ReactRouterDom
+
+core.run(async (env) => {
   if (env.isEntry) {
-    core.activate(core.name)
+    const app = await import('./dev')
+    app.runInEntryMode(env)
   }
 })

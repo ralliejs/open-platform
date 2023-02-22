@@ -1,5 +1,5 @@
 import { ProLayout, PageContainer, type ProLayoutProps } from '@ant-design/pro-components'
-import { Outlet, useLocation, Link } from 'react-router-dom'
+import { Outlet, useLocation, Link, useNavigate } from 'react-router-dom'
 import type { EnhancedRouteObject } from '~/typings'
 
 interface SystemLayoutProps {
@@ -8,17 +8,21 @@ interface SystemLayoutProps {
 
 type MenuItemRenderType = Exclude<ProLayoutProps['menuItemRender'], boolean>
 type BreadCrumbItemRenderType = ProLayoutProps['itemRender']
+type OnMenuHeaderClickType = ProLayoutProps['onMenuHeaderClick']
 
 export const SystemLayout = (props: SystemLayoutProps) => {
   const { route } = props
+  const location = useLocation()
+  const navigate = useNavigate()
+  const onMenuHeaderClick: OnMenuHeaderClickType = () => {
+    navigate('/')
+  }
   const menuItemRender: MenuItemRenderType = (item, element) => {
     return <Link to={item.path}>{element}</Link>
   }
   const breadCrumbItemRender: BreadCrumbItemRenderType = (route) => {
     return <Link to={route.path}>{route.breadcrumbName}</Link>
   }
-  const location = useLocation()
-  const title = <Link to="/">Rallie Admin</Link>
   return (
     <>
       <ProLayout
@@ -29,7 +33,8 @@ export const SystemLayout = (props: SystemLayoutProps) => {
           itemRender: breadCrumbItemRender,
         }}
         layout="side"
-        title={title as any}
+        title="Rallie Admin"
+        onMenuHeaderClick={onMenuHeaderClick}
       >
         <PageContainer>
           <Outlet />

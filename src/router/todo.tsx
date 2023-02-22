@@ -1,12 +1,10 @@
 import { Navigate } from 'react-router-dom'
 import { EnhancedRouteObject, RemoteRouteObject } from '~/typings'
-import { SolutionOutlined } from '@ant-design/icons'
 import { convertRoutes } from '~/utils/convert-route'
 
 export const getTodoRoute = (remoteRoutes: RemoteRouteObject[] = []): EnhancedRouteObject => ({
   path: 'todo',
   name: 'sample',
-  icon: <SolutionOutlined />,
   children: [
     {
       index: true,

@@ -1,20 +1,19 @@
 import type { ComponentLoader, RemoteRouteObject } from '~/typings'
 import { createBlock } from '@rallie/block'
-import React from 'react'
-import * as ReactDOM from 'react-dom'
-import * as ReactRouterDom from 'react-router-dom'
 
-export interface Core {
+export interface CoreType {
   state: {
-    container: HTMLElement
+    root: HTMLElement
     home?: ComponentLoader
     applications: RemoteRouteObject[]
-  }
-  exports: {
-    React: typeof React
-    ReactDOM: typeof ReactDOM
-    ReactRouterDom: typeof ReactRouterDom
+    locale: string
   }
 }
 
-export const core = createBlock<Core>('core')
+export const core = createBlock<CoreType>('core')
+
+export interface CoreI18nType {
+  state: {
+    locale: string
+  }
+}

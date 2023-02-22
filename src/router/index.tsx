@@ -4,8 +4,8 @@ import { Async } from '@/async'
 import { useBlockState } from '@rallie/react'
 import { core } from '~/blocks/core'
 import { createHashRouter, RouteObject, RouterProvider } from 'react-router-dom'
-import { convertRoutes } from '~/utils/convert-route'
 import { getTodoRoute } from './todo'
+import { getApplicationsRoute } from './applications'
 
 export const Router = () => {
   const routes = useBlockState(core, (state) => {
@@ -15,11 +15,11 @@ export const Router = () => {
         {
           name: '首页',
           path: '/',
-          element: <Async loader={import('#/index.page')} />,
+          element: <Async loader={() => import('#/index.page')} />,
           hideInMenu: true,
         },
         getTodoRoute(),
-        ...(Array.isArray(state.applications) ? convertRoutes(state.applications) : []),
+        getApplicationsRoute(state.applications),
       ],
     }
     const finalRoutes: EnhancedRouteObject[] = [

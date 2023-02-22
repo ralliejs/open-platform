@@ -41,7 +41,7 @@ const config = {
       'Access-Control-Allow-Origin': '*',
     },
   },
-  devtool: isProduction && 'eval-cheap-source-map',
+  devtool: 'source-map',
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js', '.json', '.svg'],
     alias: {

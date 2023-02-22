@@ -1,13 +1,18 @@
 import React from 'react'
+import { ComponentLoader } from '~/typings'
 
 interface AsyncProps {
-  loader: Promise<{ default: React.ComponentType }>
+  loader: ComponentLoader
   fallback?: React.ReactNode
 }
 
 export const Async = (props: AsyncProps) => {
   const { loader, fallback } = props
-  const Component = React.lazy(() => loader)
+  if (typeof loader !== 'function') {
+    console.warn(loader)
+    return <div>出错了</div>
+  }
+  const Component = React.lazy(loader)
   return (
     <React.Suspense fallback={fallback}>
       <Component />

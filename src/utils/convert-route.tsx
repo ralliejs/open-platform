@@ -2,10 +2,10 @@ import { Async } from '@/async'
 import { RemoteRouteObject, EnhancedRouteObject } from '~/typings'
 
 export const convertRoute = (route: RemoteRouteObject): EnhancedRouteObject => {
-  const { loader, children, ...rest } = route
+  const { loader, element, children, ...rest } = route
   return {
     ...rest,
-    element: loader ? <Async loader={loader} /> : undefined,
+    element: element || (loader ? <Async loader={loader} /> : undefined),
     children: Array.isArray(children) ? children.map(convertRoute) : undefined,
   }
 }

@@ -9,7 +9,7 @@ export type EnhancedRouteObject = Omit<RouteObject, 'children'> &
     children?: EnhancedRouteObject[]
   }
 
-export type ComponentLoader = Promise<{ default: React.ComponentType<any> }>
+export type ComponentLoader = () => Promise<{ default: React.ComponentType<any> }>
 
 export type RemoteRouteObject = Omit<EnhancedRouteObject, 'element'> & {
   loader?: ComponentLoader
