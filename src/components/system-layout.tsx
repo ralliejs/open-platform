@@ -1,5 +1,7 @@
 import { ProLayout, PageContainer, type ProLayoutProps } from '@ant-design/pro-components'
+import { Dropdown } from 'antd'
 import { Outlet, useLocation, Link, useNavigate } from 'react-router-dom'
+import { TranslationOutlined } from '@ant-design/icons'
 import type { EnhancedRouteObject } from '~/typings'
 
 interface SystemLayoutProps {
@@ -9,6 +11,28 @@ interface SystemLayoutProps {
 type MenuItemRenderType = Exclude<ProLayoutProps['menuItemRender'], boolean>
 type BreadCrumbItemRenderType = ProLayoutProps['itemRender']
 type OnMenuHeaderClickType = ProLayoutProps['onMenuHeaderClick']
+type ActionsRenderType = ProLayoutProps['actionsRender']
+
+const LocaleButton = () => {
+  return (
+    <Dropdown
+      menu={{
+        items: [
+          {
+            label: <div>中文</div>,
+            key: 'zh-CN',
+          },
+          {
+            label: <div>English</div>,
+            key: 'en-US',
+          },
+        ],
+      }}
+    >
+      <TranslationOutlined />
+    </Dropdown>
+  )
+}
 
 export const SystemLayout = (props: SystemLayoutProps) => {
   const { route } = props
@@ -23,6 +47,9 @@ export const SystemLayout = (props: SystemLayoutProps) => {
   const breadCrumbItemRender: BreadCrumbItemRenderType = (route) => {
     return <Link to={route.path}>{route.breadcrumbName}</Link>
   }
+  const actionsRender: ActionsRenderType = (props) => {
+    return [<LocaleButton key="locale" />]
+  }
   return (
     <>
       <ProLayout
@@ -34,6 +61,7 @@ export const SystemLayout = (props: SystemLayoutProps) => {
         }}
         layout="side"
         title="Rallie Admin"
+        actionsRender={actionsRender}
         onMenuHeaderClick={onMenuHeaderClick}
       >
         <PageContainer>

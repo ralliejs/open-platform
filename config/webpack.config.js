@@ -88,7 +88,7 @@ const config = {
         use: styleLoaders(false),
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i, // 静态资源
+        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|jpeg|gif)$/i, // 静态资源
         exclude: /\.react\.svg/i,
         type: 'asset',
       },

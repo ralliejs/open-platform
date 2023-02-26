@@ -9,13 +9,9 @@ export type EnhancedRouteObject = Omit<RouteObject, 'children'> &
     children?: EnhancedRouteObject[]
   }
 
-export type ComponentLoader = () => Promise<{ default: React.ComponentType<any> }>
+export type ComponentLoader = Parameters<typeof React.lazy>[0]
 
 export type RemoteRouteObject = Omit<EnhancedRouteObject, 'element'> & {
   loader?: ComponentLoader
   children?: RemoteRouteObject
-}
-
-export type ActivateConfig = {
-  container: Element | DocumentFragment
 }

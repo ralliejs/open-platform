@@ -5,6 +5,7 @@ import { useBlockState } from '@rallie/react'
 import { core } from '~/blocks/core'
 import { createHashRouter, RouteObject, RouterProvider } from 'react-router-dom'
 import { getTodoRoute } from './todo'
+import { SettingOutlined } from '@ant-design/icons'
 import { getApplicationsRoute } from './applications'
 
 export const Router = () => {
@@ -20,6 +21,12 @@ export const Router = () => {
         },
         getTodoRoute(),
         getApplicationsRoute(state.applications),
+        {
+          name: '设置',
+          icon: <SettingOutlined />,
+          path: 'settings',
+          element: <Async loader={() => import('#/settings.page')} />,
+        },
       ],
     }
     const finalRoutes: EnhancedRouteObject[] = [

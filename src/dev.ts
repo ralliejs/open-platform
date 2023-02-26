@@ -7,7 +7,7 @@ export const runInEntryMode = async (env: Env) => {
   //   loadHtml({
   //     entries: {
   //       'plugin-demo': 'http://localhost:5173',
-  //     },
+  //     }
   //   }),
   // )
   core.setState('set root', (state) => {

@@ -1,14 +1,7 @@
-import { Async } from '@/async'
-import { useBlockState } from '@rallie/react'
-import { core } from '~/blocks/core'
+import { Slot } from '@/slot'
 
 const IndexPage = () => {
-  const homeLoader = useBlockState(core, (state) => state.home)
-  if (homeLoader) {
-    return <Async loader={homeLoader} />
-  } else {
-    return <h1>首页</h1>
-  }
+  return <Slot selector={(slot) => slot.home}>首页</Slot>
 }
 
 export default IndexPage
