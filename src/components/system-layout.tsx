@@ -4,6 +4,8 @@ import { Outlet, useLocation, Link, useNavigate } from 'react-router-dom'
 import { TranslationOutlined } from '@ant-design/icons'
 import type { EnhancedRouteObject } from '~/typings'
 import React from 'react'
+import { useBlockState } from '@rallie/react'
+import { core } from '~/blocks/core'
 
 type MenuItemRenderType = Exclude<ProLayoutProps['menuItemRender'], boolean>
 type BreadCrumbItemRenderType = ProLayoutProps['itemRender']
@@ -11,19 +13,25 @@ type OnMenuHeaderClickType = ProLayoutProps['onMenuHeaderClick']
 type ActionsRenderType = ProLayoutProps['actionsRender']
 
 const LocaleButton = React.memo(() => {
+  const [selectedKeys, menuItems] = useBlockState(core, (state) => {
+    const { lang, supportedLangs } = state.i18n
+    const selectedKeys = [lang]
+    const menuItems = supportedLangs.map((item) => ({
+      key: item.key,
+      label: <div>{item.label}</div>,
+    }))
+    return [selectedKeys, menuItems]
+  })
   return (
     <Dropdown
       menu={{
-        items: [
-          {
-            label: <div>中文</div>,
-            key: 'zh-CN',
-          },
-          {
-            label: <div>English</div>,
-            key: 'en-US',
-          },
-        ],
+        onClick: ({ key }) => {
+          core.setState('change locale', (state) => {
+            state.i18n.lang = key
+          })
+        },
+        items: menuItems,
+        selectedKeys,
       }}
     >
       <TranslationOutlined />

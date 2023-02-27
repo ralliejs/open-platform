@@ -1,11 +1,11 @@
 import { Nested } from '@/nested'
 import { ConfigProvider as AntdConfigProvider, App as AntdApp } from 'antd'
-import { IntlProvider } from 'react-intl'
+import { I18nProvider } from '@/I18n-provider'
 import { Router } from './router'
 
 export const Root = () => {
   const providers = [
-    <IntlProvider key="intl" locale={'zh'} />,
+    <I18nProvider key="intl" />,
     <AntdConfigProvider
       theme={{
         token: {

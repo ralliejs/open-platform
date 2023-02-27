@@ -15,6 +15,5 @@ export const runInEntryMode = async (env: Env) => {
     document.body.appendChild(container)
     state.root = container
   })
-  // await core.activate('plugin-demo')
   await core.activate(core.name)
 }

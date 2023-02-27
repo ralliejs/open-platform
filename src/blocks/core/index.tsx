@@ -10,9 +10,19 @@ export interface CoreType {
       setting?: ComponentLoader
     }
     applications: RemoteRouteObject[]
+    i18n: {
+      lang: string
+      supportedLangs: Array<{
+        label: string
+        key: string
+      }>
+      resources: Record<string, Record<string, string>>
+    }
   }
   methods: {
     getAntdComponents: () => typeof Antd
+    addLang: (lang: { label: string; key: string }) => void
+    addI18nResource: (resources: Record<string, () => Promise<{ default: Record<string, string> }>>) => void
   }
 }
 
@@ -24,12 +34,30 @@ export const core = createBlock<CoreType>('core')
       setting: null,
     },
     applications: [],
+    i18n: {
+      lang: 'zh-CN',
+      supportedLangs: [
+        {
+          label: '简体中文',
+          key: 'zh-CN',
+        },
+        {
+          label: 'English',
+          key: 'en-US',
+        },
+      ],
+      resources: {
+        'zh-CN': {},
+        'en-US': {},
+      },
+    },
   })
   .onActivate(async () => {
+    await import('./inject-i18n')
     // 加载Core的资源，让Core的UI先渲染 -> 注入runtime -> 加载依赖Core的其他Block
-    await import('../../app')
+    await import('./start-app')
     const before = Date.now()
-    await import(/* webpackChunkName: 'runtime' */ './inject-runtime')
+    await import('./inject-runtime')
     const now = Date.now()
     console.log(`inject runtime in ${now - before}ms`)
   })
