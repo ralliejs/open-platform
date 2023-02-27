@@ -3,17 +3,14 @@ import { Dropdown } from 'antd'
 import { Outlet, useLocation, Link, useNavigate } from 'react-router-dom'
 import { TranslationOutlined } from '@ant-design/icons'
 import type { EnhancedRouteObject } from '~/typings'
-
-interface SystemLayoutProps {
-  route: EnhancedRouteObject
-}
+import React from 'react'
 
 type MenuItemRenderType = Exclude<ProLayoutProps['menuItemRender'], boolean>
 type BreadCrumbItemRenderType = ProLayoutProps['itemRender']
 type OnMenuHeaderClickType = ProLayoutProps['onMenuHeaderClick']
 type ActionsRenderType = ProLayoutProps['actionsRender']
 
-const LocaleButton = () => {
+const LocaleButton = React.memo(() => {
   return (
     <Dropdown
       menu={{
@@ -32,9 +29,15 @@ const LocaleButton = () => {
       <TranslationOutlined />
     </Dropdown>
   )
+})
+
+LocaleButton.displayName = 'LocaleButton'
+
+interface SystemLayoutProps {
+  route: EnhancedRouteObject
 }
 
-export const SystemLayout = (props: SystemLayoutProps) => {
+export const SystemLayout = React.memo((props: SystemLayoutProps) => {
   const { route } = props
   const location = useLocation()
   const navigate = useNavigate()
@@ -70,6 +73,6 @@ export const SystemLayout = (props: SystemLayoutProps) => {
       </ProLayout>
     </>
   )
-}
+})
 
 SystemLayout.displayName = 'SystemLayout'

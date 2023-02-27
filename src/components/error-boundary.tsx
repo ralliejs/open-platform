@@ -1,16 +1,16 @@
 import React from 'react'
-import { message } from 'antd'
 
-export class ErrorBoundary extends React.PureComponent<
-  {
-    errorMessage?: React.ReactNode
-    children: React.ReactNode
-    fallback?: React.ReactNode
-  },
-  {
-    hasError: boolean
-  }
-> {
+export interface ErrorBoundaryProps {
+  onError?: (error: Error, errorInfo: React.ErrorInfo) => void
+  fallback?: React.ReactNode
+  children: React.ReactNode
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean
+}
+
+export class ErrorBoundary extends React.PureComponent<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: any) {
     super(props)
     this.state = {
@@ -19,8 +19,9 @@ export class ErrorBoundary extends React.PureComponent<
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
+    const { onError } = this.props
     console.error(error, errorInfo)
-    message.error(this.props.errorMessage || 'Something went wrong')
+    onError?.(error, errorInfo)
     this.setState({
       hasError: true,
     })

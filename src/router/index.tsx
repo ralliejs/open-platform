@@ -7,8 +7,9 @@ import { createHashRouter, RouteObject, RouterProvider } from 'react-router-dom'
 import { getTodoRoute } from './todo'
 import { SettingOutlined } from '@ant-design/icons'
 import { getApplicationsRoute } from './applications'
+import React from 'react'
 
-export const Router = () => {
+export const Router = React.memo(() => {
   const routes = useBlockState(core, (state) => {
     const coreRoute: EnhancedRouteObject = {
       path: '/',
@@ -39,4 +40,6 @@ export const Router = () => {
   })
   const router = createHashRouter(routes as RouteObject[])
   return <RouterProvider router={router} />
-}
+})
+
+Router.displayName = 'Router'

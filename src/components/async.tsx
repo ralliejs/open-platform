@@ -1,22 +1,23 @@
 import React from 'react'
 import { ComponentLoader } from '~/typings'
 
-interface AsyncProps {
+export interface AsyncProps {
   loader: ComponentLoader
-  fallback?: React.ReactNode
+  props?: Record<string, any>
+  loading?: React.ReactNode
 }
 
 const LoaderMap = new WeakMap()
 
 export const Async = (props: AsyncProps) => {
-  const { loader, fallback = null } = props
+  const { loader, loading = null, props: restProps = {} } = props
   if (!LoaderMap.has(loader)) {
     LoaderMap.set(loader, React.lazy(loader))
   }
   const Component = LoaderMap.get(loader)
   return (
-    <React.Suspense fallback={fallback}>
-      <Component />
+    <React.Suspense fallback={loading}>
+      <Component {...restProps} />
     </React.Suspense>
   )
 }

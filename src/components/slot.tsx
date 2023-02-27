@@ -2,26 +2,42 @@ import { useBlockState } from '@rallie/react'
 import React from 'react'
 import { core, CoreType } from '~/blocks/core'
 import { ComponentLoader } from '~/typings'
-import { Async } from './async'
-import { ErrorBoundary } from './error-boundary'
+import { Async, AsyncProps } from './async'
+import { ErrorBoundary, ErrorBoundaryProps } from './error-boundary'
 
 interface SlotProps {
-  selector: (slot: CoreType['state']['slot']) => ComponentLoader
+  /**
+   * 插槽加载时的loading组件
+   */
+  loading?: AsyncProps['loading']
+  /**
+   * 插槽不存在或出错时的回退组件
+   */
   fallback?: React.ReactNode
-  errorMessage?: React.ReactNode
-  children?: React.ReactNode
+  /**
+   * 插槽出错时的回调
+   */
+  onError?: ErrorBoundaryProps['onError']
+  /**
+   * 传递给插槽组件的上下文
+   */
+  ctx?: Record<string, any>
+  /**
+   * 插槽loader选择器
+   */
+  children: (slot: CoreType['state']['slot']) => ComponentLoader
 }
 
 export const Slot = (props: SlotProps) => {
-  const { selector, fallback, errorMessage = '插件资源出错，请联系管理员', children = null } = props
-  const loader = useBlockState(core, (state) => selector(state.slot))
+  const { children, fallback, onError, ctx = {} } = props
+  const loader = useBlockState(core, (state) => children(state.slot))
   if (loader) {
     return (
-      <ErrorBoundary fallback={fallback} errorMessage={errorMessage}>
-        <Async loader={loader} />
+      <ErrorBoundary fallback={fallback} onError={onError}>
+        <Async loader={loader} props={ctx} />
       </ErrorBoundary>
     )
   } else {
-    return <>{children}</>
+    return <>{fallback || null}</>
   }
 }
