@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_webpack_project=self.webpackChunkmy_webpack_project||[]).push([[521],{9521:(e,c,p)=>{p.r(c),p.d(c,{default:()=>k});const k={"core.helloworld":"你好，世界"}}}]);
+//# sourceMappingURL=521.00fec40e.js.map
