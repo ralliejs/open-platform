@@ -1,11 +1,9 @@
 import { Slot } from '@/slot'
-import { useIntl } from 'react-intl'
+import { useTranslation } from 'react-i18next'
 
 const IndexPage = () => {
-  const intl = useIntl()
-  const text = intl.formatMessage({
-    id: 'core.helloworld',
-  })
+  const { t } = useTranslation()
+  const text = t('helloworld', { ns: 'core' })
   return (
     <Slot ctx={{ text }} fallback={<h1>{text}</h1>}>
       {(slot) => slot.home}

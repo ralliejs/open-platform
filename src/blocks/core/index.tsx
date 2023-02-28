@@ -16,13 +16,12 @@ export interface CoreType {
         label: string
         key: string
       }>
-      resources: Record<string, Record<string, string>>
     }
   }
   methods: {
     getAntdComponents: () => typeof Antd
     addLang: (lang: { label: string; key: string }) => void
-    addI18nResource: (resources: Record<string, () => Promise<{ default: Record<string, string> }>>) => void
+    addI18nResource: (namespace: string, resources: Record<string, () => Promise<{ default: Record<string, string> }>>) => void
   }
 }
 
@@ -46,16 +45,13 @@ export const core = createBlock<CoreType>('core')
           key: 'en-US',
         },
       ],
-      resources: {
-        'zh-CN': {},
-        'en-US': {},
-      },
     },
   })
   .onActivate(async () => {
-    await import('./inject-i18n')
+    const { updateResources } = await import('~/i18n')
+    await updateResources(core.state.i18n.lang)
     // 加载Core的资源，让Core的UI先渲染 -> 注入runtime -> 加载依赖Core的其他Block
-    await import('./start-app')
+    import('~/app')
     const before = Date.now()
     await import('./inject-runtime')
     const now = Date.now()

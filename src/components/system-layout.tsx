@@ -1,5 +1,5 @@
 import { ProLayout, PageContainer, type ProLayoutProps } from '@ant-design/pro-components'
-import { Dropdown } from 'antd'
+import { Dropdown, Button } from 'antd'
 import { Outlet, useLocation, Link, useNavigate } from 'react-router-dom'
 import { TranslationOutlined } from '@ant-design/icons'
 import type { EnhancedRouteObject } from '~/typings'
@@ -34,7 +34,7 @@ const LocaleButton = React.memo(() => {
         selectedKeys,
       }}
     >
-      <TranslationOutlined />
+      <Button type="ghost" shape="circle" icon={<TranslationOutlined />} />
     </Dropdown>
   )
 })
