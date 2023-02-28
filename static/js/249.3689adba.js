@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_webpack_project=self.webpackChunkmy_webpack_project||[]).push([[249],{3249:(e,l,n)=>{n.r(l),n.d(l,{default:()=>t});const t={"menu.home":"Home","menu.settings":"Settings","menu.sample":"Sample","menu.list":"List","menu.add":"Add","menu.detail":"Detail","index.helloworld":"Hello, World","settings.addPlugin":"Add Plugin","settings.pluginName":"Plugin Name"}}}]);
+//# sourceMappingURL=249.3689adba.js.map
