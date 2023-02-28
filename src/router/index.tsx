@@ -16,6 +16,7 @@ export const Router = React.memo(() => {
       children: [
         {
           name: '首页',
+          locale: 'core:menu.home',
           path: '/',
           element: <Async loader={() => import('#/index.page')} />,
           hideInMenu: true,
@@ -24,6 +25,7 @@ export const Router = React.memo(() => {
         getApplicationsRoute(state.applications),
         {
           name: '设置',
+          locale: 'core:menu.settings',
           icon: <SettingOutlined />,
           path: 'settings',
           element: <Async loader={() => import('#/settings.page')} />,

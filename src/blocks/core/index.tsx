@@ -21,7 +21,7 @@ export interface CoreType {
   methods: {
     getAntdComponents: () => typeof Antd
     addLang: (lang: { label: string; key: string }) => void
-    addI18nResource: (namespace: string, resources: Record<string, () => Promise<{ default: Record<string, string> }>>) => void
+    addI18nResource: (namespace: string, resources: Record<string, () => Promise<{ default: Record<string, string> }>>) => Promise<void>
   }
 }
 

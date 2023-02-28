@@ -6,6 +6,7 @@ import type { EnhancedRouteObject } from '~/typings'
 import React from 'react'
 import { useBlockState } from '@rallie/react'
 import { core } from '~/blocks/core'
+import { useTranslation } from 'react-i18next'
 
 type MenuItemRenderType = Exclude<ProLayoutProps['menuItemRender'], boolean>
 type BreadCrumbItemRenderType = ProLayoutProps['itemRender']
@@ -49,6 +50,7 @@ export const SystemLayout = React.memo((props: SystemLayoutProps) => {
   const { route } = props
   const location = useLocation()
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const onMenuHeaderClick: OnMenuHeaderClickType = () => {
     navigate('/')
   }
@@ -74,6 +76,7 @@ export const SystemLayout = React.memo((props: SystemLayoutProps) => {
         title="Rallie Admin"
         actionsRender={actionsRender}
         onMenuHeaderClick={onMenuHeaderClick}
+        formatMessage={(message) => t(message.id)}
       >
         <PageContainer>
           <Outlet />

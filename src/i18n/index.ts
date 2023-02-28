@@ -4,10 +4,10 @@ import { initReactI18next } from 'react-i18next'
 
 const resourceLoadersMap: Record<string, Record<string, () => Promise<{ default: Record<string, any> }>>> = {
   'en-US': {
-    core: () => import('./resources/en-US/core'),
+    core: () => import('./resources/en-US'),
   },
   'zh-CN': {
-    core: () => import('./resources/zh-CN/core'),
+    core: () => import('./resources/zh-CN'),
   },
 }
 
@@ -42,7 +42,8 @@ core
   })
 
 core.addMethods({
-  addI18nResource: (namesapce, resource) => {
+  addI18nResource: async (namesapce, resource) => {
+    let shouldUpdateResources = false
     Object.entries(resource).forEach(([lang, loader]) => {
       if (!resourceLoadersMap[lang]) {
         resourceLoadersMap[lang] = {}
@@ -51,13 +52,12 @@ core.addMethods({
         resourceLoadersMap[lang][namesapce] = loader
       }
       if (lang === core.state.i18n.lang) {
-        updateResources(lang).then(() => {
-          setTimeout(() => {
-            i18n.changeLanguage(core.state.i18n.lang)
-          })
-        })
+        shouldUpdateResources = true
       }
     })
+    const { lang } = core.state.i18n
+    shouldUpdateResources && (await updateResources(lang))
+    i18n.changeLanguage(lang)
   },
 })
 

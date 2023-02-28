@@ -5,6 +5,7 @@ import { convertRoutes } from '~/utils/convert-route'
 export const getTodoRoute = (remoteRoutes: RemoteRouteObject[] = []): EnhancedRouteObject => ({
   path: 'todo',
   name: 'sample',
+  locale: 'core:menu.sample',
   children: [
     {
       index: true,
@@ -12,28 +13,33 @@ export const getTodoRoute = (remoteRoutes: RemoteRouteObject[] = []): EnhancedRo
     },
     {
       path: 'list',
-      name: 'Todo列表',
-      element: <h1>Todo列表</h1>,
+      name: '列表',
+      locale: 'core:menu.list',
+      element: <h1>列表</h1>,
     },
     {
       path: 'create',
-      name: '新增Todo',
-      element: <h1>添加Todo</h1>,
+      name: '新增',
+      locale: 'core:menu.add',
+      element: <h1>添加</h1>,
     },
     {
       path: ':todoID',
-      name: 'Todo详情',
+      name: '详情',
+      locale: 'core:menu.detail',
       hideInMenu: true,
       children: [
         {
           path: '/todo/:todoID',
-          name: 'Todo详情',
-          element: <h1>Todo详情</h1>,
+          name: '详情',
+          locale: 'core:menu.detail',
+          element: <h1>详情</h1>,
         },
         {
           path: 'edit',
           name: '编辑Todo',
-          element: <h1>编辑Todo</h1>,
+          locale: 'core:menu.edit',
+          element: <h1>编辑</h1>,
         },
       ],
     },
