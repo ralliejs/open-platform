@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/327.e2a539c5.js","mappings":"qJAAA,SACIA,WAAY,Q","sources":["webpack://my-webpack-project/./src/i18n/resources/zh-CN/core.ts"],"sourcesContent":["export default {\n    helloworld: '你好，世界',\n};\n"],"names":["helloworld"],"sourceRoot":""}

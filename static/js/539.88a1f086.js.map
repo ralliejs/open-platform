@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/539.88a1f086.js","mappings":"qJAAA,SACIA,WAAY,c","sources":["webpack://my-webpack-project/./src/i18n/resources/en-US/core.ts"],"sourcesContent":["export default {\n    helloworld: 'Hello World',\n};\n"],"names":["helloworld"],"sourceRoot":""}

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_webpack_project=self.webpackChunkmy_webpack_project||[]).push([[249],{3249:(e,l,t)=>{t.r(l),t.d(l,{default:()=>m});const m={"menu.home":"Home","menu.settings":"Settings","menu.sample":"Sample","menu.list":"List","menu.add":"Add","menu.detail":"Detail","index.helloworld":"Hello, World"}}}]);
+//# sourceMappingURL=249.d6d14f45.js.map
