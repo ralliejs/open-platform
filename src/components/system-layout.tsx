@@ -72,7 +72,7 @@ export const SystemLayout = React.memo((props: SystemLayoutProps) => {
         breadcrumbProps={{
           itemRender: breadCrumbItemRender,
         }}
-        layout="side"
+        layout="mix"
         title="Rallie Admin"
         actionsRender={actionsRender}
         onMenuHeaderClick={onMenuHeaderClick}

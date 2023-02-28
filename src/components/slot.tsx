@@ -1,5 +1,6 @@
 import { useBlockState } from '@rallie/react'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { core, CoreType } from '~/blocks/core'
 import { ComponentLoader } from '~/typings'
 import { Async, AsyncProps } from './async'
@@ -30,11 +31,16 @@ interface SlotProps {
 
 export const Slot = (props: SlotProps) => {
   const { children, fallback, onError, ctx = {} } = props
+  const intl = useTranslation()
+  const slotProps = {
+    ...ctx,
+    intl,
+  }
   const loader = useBlockState(core, (state) => children(state.slot))
   if (loader) {
     return (
       <ErrorBoundary fallback={fallback} onError={onError}>
-        <Async loader={loader} props={ctx} />
+        <Async loader={loader} props={slotProps} />
       </ErrorBoundary>
     )
   } else {

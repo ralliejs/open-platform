@@ -6,4 +6,6 @@ export default {
   'menu.add': '添加',
   'menu.detail': '详情',
   'index.helloworld': '你好，世界',
+  'settings.addPlugin': '添加插件',
+  'settings.pluginName': '插件名称',
 }
