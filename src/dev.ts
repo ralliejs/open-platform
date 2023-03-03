@@ -13,7 +13,7 @@ export const runInEntryMode = async (env: Env) => {
     document.body.appendChild(container)
     state.root = container
   })
-  await core.activate(core.name)
+  core.activate(core.name)
   installedPlugins.forEach((pluginName: string) => {
     core.activate(pluginName)
   })

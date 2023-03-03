@@ -1,8 +1,9 @@
 import i18n from 'i18next'
 import { core } from '~/blocks/core'
 import { initReactI18next } from 'react-i18next'
+import type { LangKey, I18nNamespace, I18nResourceLoader } from '~/typings'
 
-const resourceLoadersMap: Record<string, Record<string, () => Promise<{ default: Record<string, any> }>>> = {
+const resourceLoadersMap: Record<LangKey, Record<I18nNamespace, I18nResourceLoader>> = {
   'en-US': {
     core: () => import('./resources/en-US'),
   },
@@ -19,15 +20,14 @@ i18n.use(initReactI18next).init({
   resources: {},
 })
 
-export const updateResources = (lang: string) => {
+export const refreshResources = async (lang: LangKey) => {
   const resourceLoaders = resourceLoadersMap[lang]
   const namespaces = Object.keys(resourceLoaders)
   if (resourceLoaders) {
-    return Promise.all(Object.values(resourceLoaders).map((loader) => loader())).then((resources) => {
-      resources.forEach((resource, index) => {
-        const namespace = namespaces[index]
-        i18n.addResources(lang, namespace, resource.default)
-      })
+    const resources = await Promise.all(Object.values(resourceLoaders).map((loader) => loader()))
+    resources.forEach((resource, index) => {
+      const namespace = namespaces[index]
+      i18n.addResources(lang, namespace, resource.default)
     })
   }
 }
@@ -36,27 +36,28 @@ core
   .watchState((state) => state.i18n.lang)
   .do(async (lang, prevLang) => {
     if (lang !== prevLang) {
-      await updateResources(lang)
+      await refreshResources(lang)
       i18n.changeLanguage(lang)
     }
   })
 
 core.addMethods({
-  addI18nResource: async (namesapce, resource) => {
-    let shouldUpdateResources = false
+  async addI18nResources(resource, trigger?: string) {
+    const namespace = trigger as string
+    let shouldrefreshResources = false
     Object.entries(resource).forEach(([lang, loader]) => {
       if (!resourceLoadersMap[lang]) {
         resourceLoadersMap[lang] = {}
       }
-      if (!resourceLoadersMap[lang][namesapce]) {
-        resourceLoadersMap[lang][namesapce] = loader
+      if (!resourceLoadersMap[lang][namespace]) {
+        resourceLoadersMap[lang][namespace] = loader
       }
       if (lang === core.state.i18n.lang) {
-        shouldUpdateResources = true
+        shouldrefreshResources = true
       }
     })
     const { lang } = core.state.i18n
-    shouldUpdateResources && (await updateResources(lang))
+    shouldrefreshResources && (await refreshResources(lang))
     i18n.changeLanguage(lang)
   },
 })

@@ -15,3 +15,7 @@ export type RemoteRouteObject = Omit<EnhancedRouteObject, 'element'> & {
   loader?: ComponentLoader
   children?: RemoteRouteObject
 }
+
+export type LangKey = string
+export type I18nNamespace = string
+export type I18nResourceLoader = () => Promise<{ default: Record<string, any> }>

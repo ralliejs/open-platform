@@ -1,6 +1,5 @@
-import type { ComponentLoader, RemoteRouteObject } from '~/typings'
+import type { ComponentLoader, I18nResourceLoader, LangKey, RemoteRouteObject } from '~/typings'
 import { createBlock } from '@rallie/block'
-import type Antd from 'antd'
 
 export interface CoreType {
   state: {
@@ -19,9 +18,8 @@ export interface CoreType {
     }
   }
   methods: {
-    getAntdComponents: () => typeof Antd
     addLang: (lang: { label: string; key: string }) => void
-    addI18nResource: (namespace: string, resources: Record<string, () => Promise<{ default: Record<string, string> }>>) => Promise<void>
+    addI18nResources: (resources: Record<LangKey, I18nResourceLoader>) => Promise<void>
   }
 }
 
@@ -48,12 +46,12 @@ export const core = createBlock<CoreType>('core')
     },
   })
   .onActivate(async () => {
-    const { updateResources } = await import('~/i18n')
-    await updateResources(core.state.i18n.lang)
+    const { refreshResources } = await import('~/i18n')
+    await refreshResources(core.state.i18n.lang)
     // 加载Core的资源，让Core的UI先渲染 -> 注入runtime -> 加载依赖Core的其他Block
     import('~/app')
     const before = Date.now()
-    await import('./inject-runtime')
+    await import('./runtime')
     const now = Date.now()
     console.log(`inject runtime in ${now - before}ms`)
   })
