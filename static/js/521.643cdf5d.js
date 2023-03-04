@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkmy_webpack_project=self.webpackChunkmy_webpack_project||[]).push([[521],{9521:(e,n,s)=>{s.r(n),s.d(n,{default:()=>t});const t={"menu.home":"首页","menu.settings":"设置","menu.sample":"示例","menu.list":"列表","menu.add":"添加","menu.detail":"详情","index.helloworld":"你好，世界","settings.addPlugin":"添加插件","settings.pluginName":"插件名称"}}}]);
-//# sourceMappingURL=521.643cdf5d.js.map
