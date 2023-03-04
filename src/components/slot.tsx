@@ -1,8 +1,8 @@
 import { useBlockState } from '@rallie/react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { core, CoreType } from '~/blocks/core'
-import { ComponentLoader } from '~/typings'
+import { core } from '~/blocks/core'
+import type { ComponentLoader, CoreType } from '~/typings'
 import { Async, AsyncProps } from './async'
 import { ErrorBoundary, ErrorBoundaryProps } from './error-boundary'
 
@@ -26,7 +26,7 @@ interface SlotProps {
   /**
    * 插槽loader选择器
    */
-  children: (slot: CoreType['state']['slot']) => ComponentLoader
+  children: (slot: CoreType['state']['slots']) => ComponentLoader
 }
 
 export const Slot = (props: SlotProps) => {
@@ -36,7 +36,7 @@ export const Slot = (props: SlotProps) => {
     ...ctx,
     intl,
   }
-  const loader = useBlockState(core, (state) => children(state.slot))
+  const loader = useBlockState(core, (state) => children(state.slots))
   if (loader) {
     return (
       <ErrorBoundary fallback={fallback} onError={onError}>

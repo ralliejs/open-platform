@@ -6,7 +6,7 @@ const IndexPage = () => {
   const text = t('index.helloworld', { ns: 'core' })
   return (
     <Slot ctx={{ text }} fallback={<h1>{text}</h1>}>
-      {(slot) => slot.home}
+      {(slots) => slots.home}
     </Slot>
   )
 }

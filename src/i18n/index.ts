@@ -2,6 +2,7 @@ import i18n from 'i18next'
 import { core } from '~/blocks/core'
 import { initReactI18next } from 'react-i18next'
 import type { LangKey, I18nNamespace, I18nResourceLoader } from '~/typings'
+import { LocalStorage } from '~/utils/local-storage'
 
 const resourceLoadersMap: Record<LangKey, Record<I18nNamespace, I18nResourceLoader>> = {
   'en-US': {
@@ -13,7 +14,7 @@ const resourceLoadersMap: Record<LangKey, Record<I18nNamespace, I18nResourceLoad
 }
 
 i18n.use(initReactI18next).init({
-  fallbackLng: 'zh-CN',
+  fallbackLng: core.state.i18n.lang,
   interpolation: {
     escapeValue: false, // not needed for react as it escapes by default
   },
@@ -38,6 +39,7 @@ core
     if (lang !== prevLang) {
       await refreshResources(lang)
       i18n.changeLanguage(lang)
+      LocalStorage.set('lang', lang)
     }
   })
 
@@ -58,6 +60,7 @@ core.addMethods({
     })
     const { lang } = core.state.i18n
     shouldrefreshResources && (await refreshResources(lang))
+    console.log(i18n.getDataByLanguage('zh-CN'))
     i18n.changeLanguage(lang)
   },
 })

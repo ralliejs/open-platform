@@ -25,6 +25,7 @@ const LocaleButton = React.memo(() => {
   })
   return (
     <Dropdown
+      arrow
       menu={{
         onClick: ({ key }) => {
           core.setState('change locale', (state) => {
@@ -72,7 +73,7 @@ export const SystemLayout = React.memo((props: SystemLayoutProps) => {
         breadcrumbProps={{
           itemRender: breadCrumbItemRender,
         }}
-        layout="mix"
+        layout="side"
         title="Rallie Admin"
         actionsRender={actionsRender}
         onMenuHeaderClick={onMenuHeaderClick}
