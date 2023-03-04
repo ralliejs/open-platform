@@ -1,7 +1,7 @@
 import { ProLayout, PageContainer, type ProLayoutProps } from '@ant-design/pro-components'
-import { Dropdown, Button } from 'antd'
+import { Dropdown, Tooltip } from 'antd'
 import { Outlet, useLocation, Link, useNavigate } from 'react-router-dom'
-import { TranslationOutlined } from '@ant-design/icons'
+import { TranslationOutlined, AppstoreOutlined, LoadingOutlined } from '@ant-design/icons'
 import type { EnhancedRouteObject } from '~/typings'
 import React from 'react'
 import { useBlockState } from '@rallie/react'
@@ -36,12 +36,26 @@ const LocaleButton = React.memo(() => {
         selectedKeys,
       }}
     >
-      <Button type="ghost" shape="circle" icon={<TranslationOutlined />} />
+      <TranslationOutlined />
     </Dropdown>
   )
 })
 
 LocaleButton.displayName = 'LocaleButton'
+
+const PluginsMarketEntry = () => {
+  const pluginsLoaded = useBlockState(core, (state) => state.pluginsLoaded)
+  const { t } = useTranslation('core')
+  return pluginsLoaded ? (
+    <Tooltip title={t('menu.plugin-market')} placement="right">
+      <Link to="/plugins-market">
+        <AppstoreOutlined style={{ color: 'grey' }} />
+      </Link>
+    </Tooltip>
+  ) : (
+    <LoadingOutlined />
+  )
+}
 
 interface SystemLayoutProps {
   route: EnhancedRouteObject
@@ -62,7 +76,7 @@ export const SystemLayout = React.memo((props: SystemLayoutProps) => {
     return <Link to={route.path}>{route.breadcrumbName}</Link>
   }
   const actionsRender: ActionsRenderType = (props) => {
-    return [<LocaleButton key="locale" />]
+    return [<PluginsMarketEntry key="plugins-market" />, <LocaleButton key="locale" />]
   }
   return (
     <>
@@ -73,8 +87,9 @@ export const SystemLayout = React.memo((props: SystemLayoutProps) => {
         breadcrumbProps={{
           itemRender: breadCrumbItemRender,
         }}
+        locale={core.state.i18n.lang as any}
         layout="side"
-        title="Rallie Admin"
+        title="Rallie Open Platform"
         actionsRender={actionsRender}
         onMenuHeaderClick={onMenuHeaderClick}
         formatMessage={(message) => t(message.id)}

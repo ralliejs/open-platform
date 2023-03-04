@@ -1,3 +1,4 @@
+// @deprecated
 module.exports = (plop) => {
   plop.setGenerator('page', {
     description: '添加一个页面',

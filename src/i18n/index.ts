@@ -44,8 +44,8 @@ core
   })
 
 core.addMethods({
-  async addI18nResources(resource, trigger?: string) {
-    const namespace = trigger as string
+  async addI18nResources(this: { trigger: string }, resource) {
+    const namespace = this.trigger
     let shouldrefreshResources = false
     Object.entries(resource).forEach(([lang, loader]) => {
       if (!resourceLoadersMap[lang]) {
@@ -60,7 +60,6 @@ core.addMethods({
     })
     const { lang } = core.state.i18n
     shouldrefreshResources && (await refreshResources(lang))
-    console.log(i18n.getDataByLanguage('zh-CN'))
     i18n.changeLanguage(lang)
   },
 })

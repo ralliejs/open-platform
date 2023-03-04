@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@ant-design/icons': ^5.0.1
   '@ant-design/pro-components': ^2.3.53
-  '@rallie/block': ^0.14.1
+  '@rallie/block': ^0.15.0
   '@rallie/load-html': ^0.14.0
   '@rallie/react': ^0.14.0
   '@svgr/webpack': ^6.5.1
@@ -67,9 +67,9 @@ specifiers:
 dependencies:
   '@ant-design/icons': 5.0.1_biqbaboplfbrettd7655fr4n2y
   '@ant-design/pro-components': 2.3.54_zziuzmw57eovk2ycxuppotpvc4
-  '@rallie/block': 0.14.1
+  '@rallie/block': 0.15.0
   '@rallie/load-html': 0.14.0
-  '@rallie/react': 0.14.0_2upvn63qgzyiiveb4fby4sfxhy
+  '@rallie/react': 0.14.0_flkuujhrhprqze73vokkhzkygy
   antd: 5.2.1_biqbaboplfbrettd7655fr4n2y
   axios: 1.3.3
   i18next: 22.4.9
@@ -1896,14 +1896,14 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@rallie/block/0.14.1:
-    resolution: {integrity: sha512-YKu9my/cVCqXz1j+Xg00hYo9dkKSWqkVEmDqY/BDPRVrykUl5uMuwkxYC1VXhDJ01k3xwoBxTh5KjYV/70fw0Q==}
+  /@rallie/block/0.15.0:
+    resolution: {integrity: sha512-35EbusTUjo1Bb2AI64R7matryJtG2RhoWooR5NAv6GLkyuxt8dbgvJTLq/z4sI55FNFtsxruvInPG4rO4NDjeA==}
     dependencies:
-      '@rallie/core': 0.14.1
+      '@rallie/core': 0.15.0
     dev: false
 
-  /@rallie/core/0.14.1:
-    resolution: {integrity: sha512-LA816dxGwrXdeEOL0+shr+X0tDVyAnefAkULZo+ha45FxGhnUa8EeoXH8ZZ3aCYpXCf/WBILc7Ws39b0P9xvHA==}
+  /@rallie/core/0.15.0:
+    resolution: {integrity: sha512-+xts56tM7fxqQZlh0CjcsH7Vzo//44097ATvFAaSDJ3EolYvJ4mxL9VyRn1wCCQQMEYGDbA6yB3gn9UCNa5WdA==}
     dependencies:
       '@vue/reactivity': 3.2.47
     dev: false
@@ -1912,13 +1912,13 @@ packages:
     resolution: {integrity: sha512-/KRxAxLUV+0cRUxKaMiavHac6KzzsqwMuabmEHyKvh89kSAOFdx/6qkAahiSLDucCcPAW6yV/or1fv9teOdsEA==}
     dev: false
 
-  /@rallie/react/0.14.0_2upvn63qgzyiiveb4fby4sfxhy:
+  /@rallie/react/0.14.0_flkuujhrhprqze73vokkhzkygy:
     resolution: {integrity: sha512-WkbKBqiJSORfFAua4uRGZPTYN4O88ypyl9085UJ+wEAvBA4GngiQW9Y2t7WN7TPcvNvZkqgtVKcJzsEg8f0jgA==}
     peerDependencies:
       '@rallie/block': ^0.6.0
       react: '>=16.8.0'
     dependencies:
-      '@rallie/block': 0.14.1
+      '@rallie/block': 0.15.0
       react: 18.2.0
     dev: false
 

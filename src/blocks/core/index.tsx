@@ -4,11 +4,15 @@ import { LocalStorage } from '~/utils/local-storage'
 
 export const core = createBlock<CoreType>('core')
   .initState({
+    pluginsLoaded: false,
     slots: {
       home: null,
       setting: null,
     },
     applications: [],
+    addOns: {
+      pluginInfo: {},
+    },
     i18n: {
       lang: LocalStorage.touch('lang', navigator.language),
       supportedLangs: [
@@ -31,3 +35,11 @@ export const core = createBlock<CoreType>('core')
     const now = Date.now()
     console.log(`inject runtime in ${now - before}ms`)
   })
+
+core.addMethods({
+  registerPluginInfo(this: { trigger: string }, pluginInfo) {
+    core.setState('注册插件信息', (state) => {
+      state.addOns.pluginInfo[this.trigger] = pluginInfo
+    })
+  },
+})

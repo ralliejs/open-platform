@@ -1,3 +1,4 @@
+// @deprecated
 module.exports = (plop) => {
   plop.setGenerator('component', {
     description: '添加一个组件',

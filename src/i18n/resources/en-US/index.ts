@@ -1,5 +1,6 @@
 export default {
   'menu.home': 'Home',
+  'menu.plugin-market': 'Plugin Market',
   'menu.settings': 'Settings',
   'menu.sample': 'Sample',
   'menu.list': 'List',

@@ -1,8 +1,8 @@
-import { EnhancedRouteObject, RemoteRouteObject } from '~/typings'
+import { CoreType, EnhancedRouteObject } from '~/typings'
 import { convertRoutes } from '~/utils/convert-route'
 
-export const getApplicationsRoute = (remoteRoutes: RemoteRouteObject[] = []): EnhancedRouteObject => ({
+export const getApplicationsRoute = (state: CoreType['state']): EnhancedRouteObject => ({
   path: 'app',
   flatMenu: true,
-  children: [...convertRoutes(remoteRoutes)],
+  children: [...convertRoutes(state.applications)],
 })

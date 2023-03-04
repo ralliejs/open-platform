@@ -1,5 +1,6 @@
 export default {
   'menu.home': '首页',
+  'menu.plugin-market': '插件市场',
   'menu.settings': '设置',
   'menu.sample': '示例',
   'menu.list': '列表',

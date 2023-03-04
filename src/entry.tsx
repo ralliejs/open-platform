@@ -1,25 +1,20 @@
 import { core } from '~/blocks/core'
 import { loadHtml } from '@rallie/load-html'
-import { message } from 'antd'
+import { LocalStorage } from '~/utils/local-storage'
+import { loadGithubPage } from './middlewares/load-github-page'
 
-if (!localStorage.getItem('installedPlugins')) {
-  localStorage.setItem('installedPlugins', '[]')
-}
-
-const installedPlugins = JSON.parse(localStorage.getItem('installedPlugins'))
+const installedPlugins = LocalStorage.touch('installedPlugins', [])
 
 core.run(async (env) => {
   env.use(loadHtml())
-  env.use(async (ctx, next) => {
-    try {
-      await ctx.loadHtml(`https://ralliejs.github.io/${ctx.name}/`)
-    } catch (err) {
-      message.error(`${ctx.name}未被部署到ralliejs的github page中`)
-      next()
-    }
-  })
-  core.activate(core.name)
-  installedPlugins.forEach((pluginName: string) => {
-    core.activate(pluginName)
-  })
+  env.use(loadGithubPage)
+  await core.activate(core.name)
+  // await delay(5)
+  Promise.allSettled(installedPlugins.map((pluginName: string) => core.activate(pluginName))).then(
+    () => {
+      core.setState('插件加载完成', (state) => {
+        state.pluginsLoaded = true
+      })
+    },
+  )
 })

@@ -1,3 +1,4 @@
+// @deprecated
 module.exports = (plop) => {
   plop.setGenerator('store', {
     description: '添加一个全局store',
