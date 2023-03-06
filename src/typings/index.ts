@@ -1,6 +1,7 @@
 import type React from 'react'
 import type { RouteObject } from 'react-router-dom'
 import type { ProLayoutProps } from '@ant-design/pro-components'
+import type { UseTranslationResponse } from 'react-i18next'
 
 type MenuItemType = ProLayoutProps['route']
 
@@ -14,7 +15,7 @@ export type ComponentLoader = Parameters<typeof React.lazy>[0]
 export type RemoteRouteObject = Omit<EnhancedRouteObject, 'element' | 'icon'> & {
   icon?: ComponentLoader
   loader?: ComponentLoader
-  children?: RemoteRouteObject
+  children?: RemoteRouteObject[]
 }
 
 export type LangKey = string
@@ -26,28 +27,24 @@ export type PluginInfo = {
   description: string
 }
 
+type UseTranslationType = () => UseTranslationResponse<string>
 export interface CoreType {
   state: {
     pluginsLoaded: boolean
     slots: {
       home?: ComponentLoader
-      setting?: ComponentLoader
     }
     applications: RemoteRouteObject[]
     addOns: {
       pluginInfo: Record<string, PluginInfo>
     }
-    i18n: {
-      lang: string
-      supportedLangs: Array<{
-        label: string
-        key: string
-      }>
-    }
+    lang: string
   }
   methods: {
-    addLang: (lang: { label: string; key: string }) => void
     addI18nResources: (resources: Record<LangKey, I18nResourceLoader>) => Promise<void>
     registerPluginInfo: (pluginInfo: PluginInfo) => void
+    registerSlot: (slotName: keyof CoreType['state']['slots'], loader: ComponentLoader) => void
+    addApplication: (application: RemoteRouteObject) => void
+    useTranslation: UseTranslationType
   }
 }

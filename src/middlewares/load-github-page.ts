@@ -1,19 +1,28 @@
 import type { MiddlewareFnType } from '@rallie/block'
 import { message } from 'antd'
+import i18n from '~/i18n'
 
 export const loadGithubPage: MiddlewareFnType = async (ctx, next) => {
   const [owner, repo] = ctx.name.split('/')
+  const showError = () => {
+    message.error(
+      i18n.t('common.failedToLoadPlugin', {
+        ns: 'core',
+        name: ctx.name,
+      }),
+    )
+  }
   if (owner && repo) {
     try {
       const success: boolean = await ctx.loadHtml(`https://${owner}.github.io/${repo}/`)
       if (!success) {
-        message.error(`加载插件 ${ctx.name} 失败`)
+        showError()
       }
     } catch (err) {
-      console.error('Error loading github page', err)
-      message.error(`加载插件 ${ctx.name} 失败`)
+      console.error(err)
+      showError()
     }
   } else {
-    message.error('插件名称不合法')
+    showError()
   }
 }

@@ -1,6 +1,6 @@
 import i18n from 'i18next'
 import { core } from '~/blocks/core'
-import { initReactI18next } from 'react-i18next'
+import { initReactI18next, useTranslation } from 'react-i18next'
 import type { LangKey, I18nNamespace, I18nResourceLoader } from '~/typings'
 import { LocalStorage } from '~/utils/local-storage'
 
@@ -14,7 +14,7 @@ const resourceLoadersMap: Record<LangKey, Record<I18nNamespace, I18nResourceLoad
 }
 
 i18n.use(initReactI18next).init({
-  fallbackLng: core.state.i18n.lang,
+  fallbackLng: core.state.lang,
   interpolation: {
     escapeValue: false, // not needed for react as it escapes by default
   },
@@ -34,7 +34,7 @@ export const refreshResources = async (lang: LangKey) => {
 }
 
 core
-  .watchState((state) => state.i18n.lang)
+  .watchState((state) => state.lang)
   .do(async (lang, prevLang) => {
     if (lang !== prevLang) {
       await refreshResources(lang)
@@ -54,13 +54,16 @@ core.addMethods({
       if (!resourceLoadersMap[lang][namespace]) {
         resourceLoadersMap[lang][namespace] = loader
       }
-      if (lang === core.state.i18n.lang) {
+      if (lang === core.state.lang) {
         shouldrefreshResources = true
       }
     })
-    const { lang } = core.state.i18n
+    const { lang } = core.state
     shouldrefreshResources && (await refreshResources(lang))
     i18n.changeLanguage(lang)
+  },
+  useTranslation(this: { trigger: string }) {
+    return useTranslation(this.trigger)
   },
 })
 

@@ -26,7 +26,7 @@ const Loader = styled.div`
     width: 10px;
     height: 10px;
     margin: 0 10px;
-    background-color: blue;
+    background-color: gray;
     animation: ${animation} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   }
   .loader-square:nth-child(1) {

@@ -3,17 +3,18 @@ import { Result, Button } from 'antd'
 import { core } from '~/blocks/core'
 import { useNavigate } from 'react-router-dom'
 import { GlobalLoading } from './global-loading'
+import { useTranslation } from 'react-i18next'
 
 export default function NotFound() {
   const isPluginsLoaded = useBlockState(core, (state) => state.pluginsLoaded)
   const applications = useBlockState(core, (state) => state.applications)
-  console.log(isPluginsLoaded, JSON.stringify(applications, null, 2))
   const navigate = useNavigate()
+  const { t } = useTranslation('core')
   return isPluginsLoaded ? (
     <Result
       status="404"
       title="404"
-      subTitle="Sorry, the page you visited does not exist."
+      subTitle={t('not-found.subTitle')}
       extra={
         <Button
           type="primary"
@@ -21,7 +22,7 @@ export default function NotFound() {
             navigate('/')
           }}
         >
-          Back Home
+          {t('not-found.backHome')}
         </Button>
       }
     />

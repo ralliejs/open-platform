@@ -1,10 +1,12 @@
 import { useBlockState } from '@rallie/react'
-import { Button, Input, Modal, Form, Card } from 'antd'
+import { Button, Input, Modal, Form, Card, Avatar, Tooltip } from 'antd'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useImmer } from 'use-immer'
 import { core } from '~/blocks/core'
 import { LocalStorage } from '~/utils/local-storage'
+// @ts-ignore
+import defaultPluginImage from '~/assets/default-plugin-image.svg'
 
 const installedPlugins: string[] = LocalStorage.touch('installedPlugins', [])
 
@@ -15,13 +17,19 @@ interface PluginCardProps {
 
 const PluginCard = (props: PluginCardProps) => {
   const { id, onDelete } = props
-  const { title, description } = useBlockState(core, (state) => {
+  const { t } = useTranslation(id)
+  const { t: coreTranslate } = useTranslation('core')
+  const { titleKey, descriptionKey } = useBlockState(core, (state) => {
     const info = state.addOns.pluginInfo[id]
     return {
-      title: info?.title || '未命名插件',
-      description: info?.description || '',
+      titleKey: info?.title,
+      descriptionKey: info?.description,
     }
   })
+  const title = titleKey ? t(titleKey) : coreTranslate('plugin-market.defaultPluginTitle')
+  const description = descriptionKey
+    ? t(descriptionKey)
+    : coreTranslate('plugin-market.defaultPluginDescription')
   const delayButton = (
     <Button
       type="ghost"
@@ -30,18 +38,23 @@ const PluginCard = (props: PluginCardProps) => {
         location.reload()
       }}
     >
-      删除
+      {coreTranslate('common.delete')}
     </Button>
   )
+  const avatar = (
+    <Tooltip title={id}>
+      <Avatar shape="square" src={defaultPluginImage} />
+    </Tooltip>
+  )
   return (
-    <Card style={{ width: 300, margin: '20px 20px 20px 0px' }} actions={[delayButton]}>
-      <Card.Meta title={`${title}@${id}`} description={description} />
+    <Card style={{ width: 350, margin: '20px 20px 20px 0px' }} actions={[delayButton]}>
+      <Card.Meta avatar={avatar} title={title} description={description} />
     </Card>
   )
 }
 
 export default function PluginsMarket() {
-  const intl = useTranslation('core')
+  const { t } = useTranslation('core')
   const [modalOpen, setModalOpen] = React.useState(false)
   const [plugins, setPlugins] = useImmer(installedPlugins)
   const [form] = Form.useForm()
@@ -61,9 +74,9 @@ export default function PluginsMarket() {
             })
           })
           .catch(() => {})
+        setModalOpen(false)
       })
       .catch(() => {})
-    setModalOpen(false)
   }
   const onDelete = (id: string) => {
     const index = plugins.indexOf(id)
@@ -82,7 +95,7 @@ export default function PluginsMarket() {
           setModalOpen(true)
         }}
       >
-        {intl.t('settings.addPlugin')}
+        {t('plugin-market.addPlugin')}
       </Button>
       <div
         style={{
@@ -94,7 +107,7 @@ export default function PluginsMarket() {
         ))}
       </div>
       <Modal
-        title="新增插件"
+        title={t('plugin-market.addPlugin')}
         open={modalOpen}
         destroyOnClose
         onCancel={() => {
@@ -104,7 +117,7 @@ export default function PluginsMarket() {
       >
         <Form form={form}>
           <Form.Item
-            label="插件ID"
+            label={t('plugin-market.pluginID')}
             name={['id']}
             rules={[
               {
@@ -115,13 +128,13 @@ export default function PluginsMarket() {
                     callback()
                   } else {
                     // eslint-disable-next-line n/no-callback-literal
-                    callback('格式错误')
+                    callback(t('plugin-market.wrongFormat'))
                   }
                 },
               },
             ]}
           >
-            <Input placeholder="github用户名/github仓库名" />
+            <Input placeholder={t('plugin-market.placeholder')} />
           </Form.Item>
         </Form>
       </Modal>

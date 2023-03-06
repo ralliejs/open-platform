@@ -4,9 +4,21 @@ import { ConfigProvider as AntdConfigProvider, App as AntdApp } from 'antd'
 import { Router } from '~/router'
 import { refreshResources } from '~/i18n'
 import { core } from '~/blocks/core'
+import zhCN from 'antd/locale/zh_CN'
+import enUS from 'antd/locale/en_US'
+import { useBlockState } from '@rallie/react'
+
+const locales = {
+  'zh-CN': zhCN,
+  'en-US': enUS,
+}
 
 const RootComponent = () => {
-  const providers = [<AntdConfigProvider key="antd" />, <AntdApp key="antd-app" />]
+  const lang = useBlockState(core, (state) => state.lang)
+  const providers = [
+    <AntdConfigProvider locale={locales[lang as keyof typeof locales]} key="antd" />,
+    <AntdApp key="antd-app" />,
+  ]
   return (
     <Nested elements={providers}>
       <Router />
@@ -22,6 +34,6 @@ if (!dom) {
 }
 
 const root = createRoot(dom)
-refreshResources(core.state.i18n.lang).then(() => {
+refreshResources(core.state.lang).then(() => {
   root.render(<RootComponent />)
 })

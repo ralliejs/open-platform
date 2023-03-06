@@ -26,7 +26,7 @@ interface SlotProps {
   /**
    * 插槽loader选择器
    */
-  children: (slot: CoreType['state']['slots']) => ComponentLoader
+  children: (slots: CoreType['state']['slots']) => ComponentLoader
 }
 
 export const Slot = (props: SlotProps) => {

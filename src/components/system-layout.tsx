@@ -13,10 +13,20 @@ type BreadCrumbItemRenderType = ProLayoutProps['itemRender']
 type OnMenuHeaderClickType = ProLayoutProps['onMenuHeaderClick']
 type ActionsRenderType = ProLayoutProps['actionsRender']
 
+const supportedLangs = [
+  {
+    label: '简体中文',
+    key: 'zh-CN',
+  },
+  {
+    label: 'English',
+    key: 'en-US',
+  },
+]
+
 const LocaleButton = React.memo(() => {
   const [selectedKeys, menuItems] = useBlockState(core, (state) => {
-    const { lang, supportedLangs } = state.i18n
-    const selectedKeys = [lang]
+    const selectedKeys = [state.lang]
     const menuItems = supportedLangs.map((item) => ({
       key: item.key,
       label: <div>{item.label}</div>,
@@ -29,7 +39,7 @@ const LocaleButton = React.memo(() => {
       menu={{
         onClick: ({ key }) => {
           core.setState('change locale', (state) => {
-            state.i18n.lang = key
+            state.lang = key
           })
         },
         items: menuItems,
@@ -87,7 +97,7 @@ export const SystemLayout = React.memo((props: SystemLayoutProps) => {
         breadcrumbProps={{
           itemRender: breadCrumbItemRender,
         }}
-        locale={core.state.i18n.lang as any}
+        locale={core.state.lang as any}
         layout="side"
         title="Rallie Open Platform"
         actionsRender={actionsRender}
