@@ -87,7 +87,8 @@ core.methods.addI18nResources({
 - 使用多语言
 ```ts
 const core = myPlugin.connect('core')
-const { useTranslation } = core.methods // useTranslation是react-i18next的useTranslation
+// useTranslation是react-i18next的useTranslation，不用关心namespace，开放平台会为插件注册的多语言资源注册唯一的namespace
+const { useTranslation } = core.methods
 ```
 
 - 替换首页
