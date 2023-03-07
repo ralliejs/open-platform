@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next'
 
 export default function NotFound() {
   const isPluginsLoaded = useBlockState(core, (state) => state.pluginsLoaded)
-  const applications = useBlockState(core, (state) => state.applications)
   const navigate = useNavigate()
   const { t } = useTranslation('core')
   return isPluginsLoaded ? (
@@ -27,9 +26,6 @@ export default function NotFound() {
       }
     />
   ) : (
-    <>
-      <div style={{ display: 'none' }}>{applications.toString()}</div>
-      <GlobalLoading />
-    </>
+    <GlobalLoading />
   )
 }

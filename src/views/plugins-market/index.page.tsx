@@ -58,6 +58,7 @@ export default function PluginsMarket() {
   const [modalOpen, setModalOpen] = React.useState(false)
   const [plugins, setPlugins] = useImmer(installedPlugins)
   const [form] = Form.useForm()
+  const [loading, setLoading] = React.useState(false)
   React.useEffect(() => {
     LocalStorage.set('installedPlugins', Array.from(new Set(plugins)))
   }, [plugins])
@@ -66,6 +67,7 @@ export default function PluginsMarket() {
       .validateFields()
       .then(() => {
         const newPluginId = form.getFieldValue('id')
+        setLoading(true)
         core
           .activate(newPluginId)
           .then(() => {
@@ -74,7 +76,9 @@ export default function PluginsMarket() {
             })
           })
           .catch(() => {})
-        setModalOpen(false)
+          .finally(() => {
+            setModalOpen(false)
+          })
       })
       .catch(() => {})
   }
@@ -114,6 +118,13 @@ export default function PluginsMarket() {
           setModalOpen(false)
         }}
         onOk={onAdd}
+        okButtonProps={{
+          loading,
+        }}
+        afterClose={() => {
+          form.resetFields()
+          setLoading(false)
+        }}
       >
         <Form form={form}>
           <Form.Item

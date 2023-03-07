@@ -12,11 +12,9 @@ core.run(async (env) => {
   env.use(loadGithubPage)
   core.activate(core.name)
   // await delay(5)
-  Promise.allSettled(installedPlugins.map((pluginName: string) => core.activate(pluginName))).then(
-    () => {
-      core.setState('插件加载完成', (state) => {
-        state.pluginsLoaded = true
-      })
-    },
-  )
+  await Promise.allSettled(installedPlugins.map((pluginName: string) => core.activate(pluginName)))
+  console.log('插件加载完成')
+  core.setState('插件加载完成', (state) => {
+    state.pluginsLoaded = true
+  })
 })
