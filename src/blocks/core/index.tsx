@@ -1,6 +1,12 @@
 import type { CoreType, RemoteRouteObject } from '~/typings'
 import { createBlock } from '@rallie/block'
 import { LocalStorage } from '~/utils/local-storage'
+import * as RallieBlock from '@rallie/block'
+
+if (!window.RallieBlock) {
+  window.RallieBlock = RallieBlock
+  console.log('inject @rallie/block')
+}
 
 export const core = createBlock<CoreType>('core')
   .initState(

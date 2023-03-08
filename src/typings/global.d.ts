@@ -2,6 +2,7 @@ import type React from 'react'
 import type ReactDOM from 'react-dom'
 import type ReactRouterDOM from 'react-router-dom'
 import type Antd from 'antd'
+import * as RallieBlock from '@rallie/block'
 
 declare module '*.svg'
 declare module '*.png'
@@ -23,6 +24,7 @@ declare global {
     ReactDOM: typeof ReactDOM
     ReactRouterDOM: typeof ReactRouterDOM
     Antd: typeof Antd
+    RallieBlock: typeof RallieBlock
   }
 }
 
