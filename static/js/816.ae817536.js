@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkmy_webpack_project=self.webpackChunkmy_webpack_project||[]).push([[816],{8816:(e,t,c)=>{var a;c.r(t);var w=c(959),n=c(422),o=c(8254),r=c(9278);window.React=w,window.ReactDOM=a||(a=c.t(n,2)),window.ReactRouterDOM=o,window.Antd=r,console.log("inject runtime: React, ReactDOM, ReactRouterDOM, Antd")}}]);
-//# sourceMappingURL=816.ae817536.js.map
