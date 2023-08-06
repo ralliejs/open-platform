@@ -5,20 +5,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const DotEnv = require('dotenv-webpack')
 
 const postcssOptions = require('./postcss.config')
-const lessOptions = require('./less.config')
 const cssOptions = require('./css.config')
-
-const styleLoaders = (useLess) => {
-  const loaders = [
-    isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-    { loader: 'css-loader', options: cssOptions },
-    { loader: 'postcss-loader', options: { postcssOptions } },
-  ]
-  if (useLess) {
-    loaders.push({ loader: 'less-loader', options: { lessOptions } })
-  }
-  return loaders
-}
 
 // constants
 const isProduction = process.env.NODE_ENV === 'production'
@@ -80,12 +67,12 @@ const config = {
         use: { loader: 'ts-loader' }, // 后面项目滚得比较大之后再添加thread-loader
       },
       {
-        test: /\.less$/i,
-        use: styleLoaders(true),
-      },
-      {
         test: /\.css$/i,
-        use: styleLoaders(false),
+        use: [
+          isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+          { loader: 'css-loader', options: cssOptions },
+          { loader: 'postcss-loader', options: { postcssOptions } },
+        ],
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|jpeg|gif)$/i, // 静态资源

@@ -2,6 +2,7 @@ import { core } from '~/blocks/core'
 import { loadHtml } from '@rallie/load-html'
 import { LocalStorage } from '~/utils/local-storage'
 import { loadGithubPage } from './middlewares/load-github-page'
+import '~/styles/index.css'
 
 const installedPlugins = LocalStorage.touch('installedPlugins', [])
 
@@ -10,9 +11,6 @@ const installedPlugins = LocalStorage.touch('installedPlugins', [])
 core.run(async (env) => {
   env.use(
     loadHtml({
-      // entries: {
-      //   'ralliejs/demo-plugin': 'http://127.0.0.1:5500/dist/',
-      // },
       filter: (element) => {
         switch (element.tagName.toLowerCase()) {
           case 'script':
@@ -26,7 +24,12 @@ core.run(async (env) => {
     }),
   )
   env.use(loadGithubPage)
-  core.activate(core.name)
+  core.activate(core.name).then(async () => {
+    if (env.isEntry) {
+      await import('~/mock/mock-block')
+      core.activate('mock')
+    }
+  })
   // await delay(5)
   await Promise.allSettled(installedPlugins.map((pluginName: string) => core.activate(pluginName)))
   console.log('插件加载完成')

@@ -1,16 +1,17 @@
 const autoprefixer = require('autoprefixer')
-// const pxToViewport = require('postcss-px-to-viewport')
+const tailwindcss = require('tailwindcss')
+const nesting = require('tailwindcss/nesting')
+const cssnano = require('cssnano')
+const path = require('path')
+
+const isProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
   plugins: [
+    nesting(),
+    tailwindcss(path.resolve(__dirname, '../tailwind.config.js')),
     autoprefixer({
       overrideBrowserslist: ['last 2 versions', '>1%', 'ios 7'],
     }),
-    // pxToViewport({
-    //   unitToConvert: 'px', // 要转化的单位
-    //   viewportWidth: 1920, // UI设计稿的宽度
-    //   unitPrecision: 6, // 转化后保留的小数位数
-    //   viewportUnit: 'vw'
-    // })
-  ],
+  ].concat(isProduction ? [cssnano()] : []),
 }

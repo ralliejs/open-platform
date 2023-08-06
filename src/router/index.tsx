@@ -14,7 +14,6 @@ export const Router = React.memo(() => {
   const routes = useBlockState(core, (state) => {
     const route: EnhancedRouteObject = {
       path: '/',
-      // errorElement: <NotFound />,
       children: [
         {
           name: '首页',
@@ -30,8 +29,11 @@ export const Router = React.memo(() => {
     const finalRoutes: EnhancedRouteObject[] = [
       {
         element: <SystemLayout route={route} />,
-        errorElement: <NotFound />,
         children: [route],
+      },
+      {
+        path: '*',
+        element: state.pluginsLoaded ? <NotFound /> : null,
       },
     ]
     return finalRoutes

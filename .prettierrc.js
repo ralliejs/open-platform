@@ -1,4 +1,5 @@
 module.exports = {
+  plugins: ['prettier-plugin-tailwindcss'],
   /** 一行的字符数, 如果超过会进行换行 */
   printWidth: 100,
   /** 一个tab代表几个空格数 */
