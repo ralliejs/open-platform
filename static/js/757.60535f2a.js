@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_webpack_project=self.webpackChunkmy_webpack_project||[]).push([[757],{3757:(e,c,o)=>{o.r(c);var n=(0,o(5885).createBlock)("mock"),t=n.connect("core");n.relyOn([t.name]).onActivate((function(){console.log("")}))}}]);
+//# sourceMappingURL=757.60535f2a.js.map
