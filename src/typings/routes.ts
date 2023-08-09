@@ -13,6 +13,6 @@ export type ComponentLoader = Parameters<typeof React.lazy>[0]
 
 export type RemoteRouteObject = Omit<EnhancedRouteObject, 'element' | 'icon'> & {
   icon?: ComponentLoader
-  loader?: ComponentLoader
+  component?: ComponentLoader
   children?: RemoteRouteObject[]
 }

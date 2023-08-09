@@ -54,13 +54,15 @@ const LocaleButton = React.memo(() => {
 LocaleButton.displayName = 'LocaleButton'
 
 const PluginsMarketEntry = () => {
-  const pluginsLoaded = useBlockState(core, (state) => state.pluginsLoaded)
+  const extensionsLoaded = useBlockState(core, (state) => state.pluginsLoaded)
   const { t } = useTranslation('core')
-  return pluginsLoaded ? (
-    <Tooltip title={t('menu.plugin-market')} placement="right">
-      <Link to="/plugins-market">
-        <AppstoreOutlined style={{ color: 'grey' }} />
-      </Link>
+  const navigate = useNavigate()
+  const onClick = React.useCallback(() => {
+    navigate('/plugins-market')
+  }, [navigate])
+  return extensionsLoaded ? (
+    <Tooltip title={t('menu.plugin-market')}>
+      <AppstoreOutlined style={{ color: 'grey' }} onClick={onClick} />
     </Tooltip>
   ) : (
     <LoadingOutlined />
@@ -91,6 +93,7 @@ export const SystemLayout = React.memo((props: SystemLayoutProps) => {
   return (
     <>
       <ProLayout
+        fixSiderbar
         location={location}
         route={route}
         menuItemRender={menuItemRender}
@@ -98,7 +101,7 @@ export const SystemLayout = React.memo((props: SystemLayoutProps) => {
           itemRender: breadCrumbItemRender,
         }}
         locale={core.state.lang as any}
-        layout="side"
+        layout="mix"
         title="Rallie Open Platform"
         actionsRender={actionsRender}
         onMenuHeaderClick={onMenuHeaderClick}

@@ -1,6 +1,6 @@
 import type { MiddlewareFnType } from '@rallie/block'
 import { message } from 'antd'
-import i18n from '~/i18n'
+import { i18n } from '~/i18n'
 
 export const loadGithubPage: MiddlewareFnType = async (ctx, next) => {
   const [owner, repo] = ctx.name.split('/')

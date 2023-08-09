@@ -1,4 +1,3 @@
-import { createRoot } from 'react-dom/client'
 import { Nested } from '@/nested'
 import { ConfigProvider as AntdConfigProvider, App as AntdApp } from 'antd'
 import { Router } from '~/router'
@@ -6,6 +5,8 @@ import { core } from '~/blocks/core'
 import zhCN from 'antd/locale/zh_CN'
 import enUS from 'antd/locale/en_US'
 import { useBlockState } from '@rallie/react'
+import '~/styles/index.css'
+import { createRoot } from 'react-dom/client'
 
 const locales = {
   'zh-CN': zhCN,
@@ -25,10 +26,10 @@ const RootComponent = () => {
   )
 }
 
-let dom = document.getElementById('core')
+let dom = document.getElementById('origin')
 if (!dom) {
   dom = document.createElement('div')
-  dom.setAttribute('id', 'core')
+  dom.setAttribute('id', 'origin')
   document.body.appendChild(dom)
 }
 
