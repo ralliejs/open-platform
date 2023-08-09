@@ -1,10 +1,12 @@
 import i18n from 'i18next'
 import { core } from '~/blocks/core'
 import { initReactI18next, useTranslation } from 'react-i18next'
-import type { LangKey, I18nNamespace, I18nResourceLoader } from '~/typings'
 import { LocalStorage } from '~/utils/local-storage'
 
-const resourceLoadersMap: Record<LangKey, Record<I18nNamespace, I18nResourceLoader>> = {
+const resourceLoadersMap: Record<
+  string,
+  Record<string, () => Promise<{ default: Record<string, any> }>>
+> = {
   'en-US': {
     core: () => import('./resources/en-US'),
   },
@@ -21,7 +23,11 @@ i18n.use(initReactI18next).init({
   resources: {},
 })
 
-export const refreshResources = async (lang: LangKey) => {
+export { i18n }
+
+export const addResources = (namespace: string) => {}
+
+export const refreshResources = async (lang: string) => {
   const resourceLoaders = resourceLoadersMap[lang]
   const namespaces = Object.keys(resourceLoaders)
   if (resourceLoaders) {
