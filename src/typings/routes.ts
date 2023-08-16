@@ -1,5 +1,5 @@
-import type React from 'react'
 import type { RouteObject } from 'react-router-dom'
+import type { ComponentLoader } from './common'
 import type { ProLayoutProps } from '@ant-design/pro-components'
 
 type MenuItemType = ProLayoutProps['route']
@@ -9,9 +9,8 @@ export type EnhancedRouteObject = Omit<RouteObject, 'children'> &
     children?: EnhancedRouteObject[]
   }
 
-export type ComponentLoader = Parameters<typeof React.lazy>[0]
-
-export type RemoteRouteObject = Omit<EnhancedRouteObject, 'element' | 'icon'> & {
+export type RemoteRouteObject = Omit<EnhancedRouteObject, 'element' | 'icon' | 'children'> & {
+  owner: string
   icon?: ComponentLoader
   component?: ComponentLoader
   children?: RemoteRouteObject[]

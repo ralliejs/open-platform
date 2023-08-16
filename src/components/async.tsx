@@ -1,5 +1,5 @@
 import React from 'react'
-import { ComponentLoader } from '~/typings'
+import { ComponentLoader } from '~/typings/common'
 
 export interface AsyncProps {
   loader: ComponentLoader

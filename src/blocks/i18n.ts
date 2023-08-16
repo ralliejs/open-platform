@@ -3,27 +3,26 @@ import type { UseTranslationResponse } from 'react-i18next'
 import { createBlock } from '@rallie/block'
 import { i18n, applyResources, addResources } from '~/i18n'
 import { LocalStorage } from '~/utils/local-storage'
+import { ORIGIN_I18N_BLOCK } from '~/utils/constants'
 
-type State = {
-  language: 'zh-CN' | 'en-US'
+export type I18nBlock = {
+  state: {
+    language: 'zh-CN' | 'en-US'
+  }
+  methods: {
+    addI18nResources: (
+      resource: Record<string, () => Promise<{ default: Record<string, any> }>>,
+    ) => Promise<void>
+    useTranslation: () => UseTranslationResponse<string>
+  }
 }
 
-type Methods = {
-  addI18nResources: (
-    resource: Record<string, () => Promise<{ default: Record<string, any> }>>,
-  ) => Promise<void>
-  useTranslation: () => UseTranslationResponse<string>
-}
-
-export const extensionI18nBlock = createBlock<{
-  state: State
-  methods: Methods
-}>('origin:extensions:i18n')
+export const i18nBlock = createBlock<I18nBlock>(ORIGIN_I18N_BLOCK)
   .initState({
     language: 'zh-CN',
   })
   .onActivate(async () => {
-    extensionI18nBlock
+    i18nBlock
       .watchState((state) => state.language)
       .do(async (lang, prevLang) => {
         if (lang !== prevLang) {
@@ -32,10 +31,10 @@ export const extensionI18nBlock = createBlock<{
           LocalStorage.set('lang', lang)
         }
       })
-    extensionI18nBlock.addMethods({
+    i18nBlock.addMethods({
       async addI18nResources(this: { trigger: string }, resources) {
         const { trigger: namespace } = this
-        const { language } = extensionI18nBlock.state
+        const { language } = i18nBlock.state
         const shouldApplyImmediately = !!resources[language]
         addResources(namespace, resources)
         if (shouldApplyImmediately) {
@@ -48,5 +47,11 @@ export const extensionI18nBlock = createBlock<{
         return useTranslation(namespace)
       },
     })
-    await applyResources(extensionI18nBlock.state.language)
+    await applyResources(i18nBlock.state.language)
   })
+
+export const changeLocale = (language: I18nBlock['state']['language']) => {
+  i18nBlock.setState('change locale', (state) => {
+    state.language = language
+  })
+}

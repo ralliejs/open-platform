@@ -1,14 +1,9 @@
-import { Slot } from '@/slot'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '~/i18n'
 
 const IndexPage = () => {
-  const { t } = useTranslation('core')
+  const { t } = useTranslation()
   const text = t('home.helloWorld')
-  return (
-    <Slot ctx={{ text }} fallback={<h1>{text}</h1>}>
-      {(slots) => slots.home}
-    </Slot>
-  )
+  return <div className="text-lg">{text}</div>
 }
 
 export default IndexPage

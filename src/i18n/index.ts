@@ -1,5 +1,4 @@
 import i18n from 'i18next'
-import { core } from '~/blocks/core'
 import { initReactI18next, useTranslation as useI18nextTranslation } from 'react-i18next'
 
 const resourceLoadersMap: Record<
@@ -15,7 +14,7 @@ const resourceLoadersMap: Record<
 }
 
 i18n.use(initReactI18next).init({
-  fallbackLng: core.state.lang,
+  fallbackLng: 'zh-CN',
   interpolation: {
     escapeValue: false, // not needed for react as it escapes by default
   },
@@ -52,4 +51,4 @@ export const useTranslation = () => {
   return useI18nextTranslation('origin')
 }
 
-export { i18n }
+export { i18n, useI18nextTranslation }

@@ -1,17 +1,19 @@
 import { ProLayout, PageContainer, type ProLayoutProps } from '@ant-design/pro-components'
-import { Dropdown, Tooltip } from 'antd'
+import { Dropdown, Tooltip, type DropDownProps } from 'antd'
 import { Outlet, useLocation, Link, useNavigate } from 'react-router-dom'
 import { TranslationOutlined, AppstoreOutlined, LoadingOutlined } from '@ant-design/icons'
-import type { EnhancedRouteObject } from '~/typings'
+import type { EnhancedRouteObject } from '~/typings/routes'
 import React from 'react'
 import { useBlockState } from '@rallie/react'
-import { core } from '~/blocks/core'
-import { useTranslation } from 'react-i18next'
+import { i18nBlock, changeLocale } from '~/blocks'
+import { useTranslation, useI18nextTranslation } from '~/i18n'
+import { useExtensions } from '~/stores/extensions'
 
 type MenuItemRenderType = Exclude<ProLayoutProps['menuItemRender'], boolean>
 type BreadCrumbItemRenderType = ProLayoutProps['itemRender']
 type OnMenuHeaderClickType = ProLayoutProps['onMenuHeaderClick']
 type ActionsRenderType = ProLayoutProps['actionsRender']
+type DropdownMenuType = DropDownProps['menu']
 
 const supportedLangs = [
   {
@@ -25,27 +27,26 @@ const supportedLangs = [
 ]
 
 const LocaleButton = React.memo(() => {
-  const [selectedKeys, menuItems] = useBlockState(core, (state) => {
-    const selectedKeys = [state.lang]
+  const [selectedKeys, menuItems] = useBlockState(i18nBlock, (state) => {
+    const selectedKeys = [state.language]
     const menuItems = supportedLangs.map((item) => ({
       key: item.key,
       label: <div>{item.label}</div>,
     }))
     return [selectedKeys, menuItems]
   })
+  const menu = React.useMemo<DropdownMenuType>(
+    () => ({
+      onClick: ({ key }) => {
+        changeLocale(key as any)
+      },
+      items: menuItems,
+      selectedKeys,
+    }),
+    [menuItems, selectedKeys],
+  )
   return (
-    <Dropdown
-      arrow
-      menu={{
-        onClick: ({ key }) => {
-          core.setState('change locale', (state) => {
-            state.lang = key
-          })
-        },
-        items: menuItems,
-        selectedKeys,
-      }}
-    >
+    <Dropdown arrow menu={menu}>
       <TranslationOutlined />
     </Dropdown>
   )
@@ -53,19 +54,19 @@ const LocaleButton = React.memo(() => {
 
 LocaleButton.displayName = 'LocaleButton'
 
-const PluginsMarketEntry = () => {
-  const extensionsLoaded = useBlockState(core, (state) => state.pluginsLoaded)
-  const { t } = useTranslation('core')
+const ExtensionsMarketEntry = () => {
+  const { loadingExtensions } = useExtensions()
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const onClick = React.useCallback(() => {
-    navigate('/plugins-market')
+    navigate('/extensions-market')
   }, [navigate])
-  return extensionsLoaded ? (
+  return loadingExtensions ? (
+    <LoadingOutlined />
+  ) : (
     <Tooltip title={t('menu.plugin-market')}>
       <AppstoreOutlined style={{ color: 'grey' }} onClick={onClick} />
     </Tooltip>
-  ) : (
-    <LoadingOutlined />
   )
 }
 
@@ -77,19 +78,21 @@ export const SystemLayout = React.memo((props: SystemLayoutProps) => {
   const { route } = props
   const location = useLocation()
   const navigate = useNavigate()
-  const { t } = useTranslation()
+  const { t } = useI18nextTranslation()
   const onMenuHeaderClick: OnMenuHeaderClickType = () => {
     navigate('/')
   }
   const menuItemRender: MenuItemRenderType = (item, element) => {
+    console.log(item)
     return <Link to={item.path}>{element}</Link>
   }
   const breadCrumbItemRender: BreadCrumbItemRenderType = (route) => {
     return <Link to={route.path}>{route.breadcrumbName}</Link>
   }
   const actionsRender: ActionsRenderType = (props) => {
-    return [<PluginsMarketEntry key="plugins-market" />, <LocaleButton key="locale" />]
+    return [<ExtensionsMarketEntry key="plugins-market" />, <LocaleButton key="locale" />]
   }
+  const locale = useBlockState(i18nBlock, (state) => state.language)
   return (
     <>
       <ProLayout
@@ -97,10 +100,8 @@ export const SystemLayout = React.memo((props: SystemLayoutProps) => {
         location={location}
         route={route}
         menuItemRender={menuItemRender}
-        breadcrumbProps={{
-          itemRender: breadCrumbItemRender,
-        }}
-        locale={core.state.lang as any}
+        itemRender={breadCrumbItemRender}
+        locale={locale}
         layout="mix"
         title="Rallie Open Platform"
         actionsRender={actionsRender}

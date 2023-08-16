@@ -1,6 +1,9 @@
-import { createStore } from '~/utils/create-store'
+import { createStore } from '~/stores/utils/create-store'
 
-export const useExtensions = createStore((set) => ({
+export const useExtensions = createStore<{
+  loadingExtensions: boolean
+  setLoadingExtensions: (value: boolean) => void
+}>((set) => ({
   loadingExtensions: false,
   setLoadingExtensions: (value: boolean) => {
     set((state) => {

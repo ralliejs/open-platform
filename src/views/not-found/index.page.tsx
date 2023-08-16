@@ -1,10 +1,10 @@
 import { Result, Button } from 'antd'
 import { useNavigate } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '~/i18n'
 
 export default function NotFound() {
   const navigate = useNavigate()
-  const { t } = useTranslation('core')
+  const { t } = useTranslation()
   return (
     <Result
       status="404"

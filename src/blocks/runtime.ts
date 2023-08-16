@@ -4,7 +4,7 @@ import * as ReactRouterDOM from 'react-router-dom'
 import * as Antd from 'antd'
 import * as RallieBlock from '@rallie/block'
 
-window.React = React
+window.React = React as any // todo: fix type error
 window.ReactDOM = ReactDOM
 window.ReactRouterDOM = ReactRouterDOM
 window.Antd = Antd
