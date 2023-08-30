@@ -34,6 +34,8 @@
     // 相对路径的引用规则
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
+    // 支持导入JSON
+    "resolveJsonModule": true,
     // path的根路径
     "baseUrl": ".",
     // 路径别名

@@ -83,7 +83,6 @@ export const SystemLayout = React.memo((props: SystemLayoutProps) => {
     navigate('/')
   }
   const menuItemRender: MenuItemRenderType = (item, element) => {
-    console.log(item)
     return <Link to={item.path}>{element}</Link>
   }
   const breadCrumbItemRender: BreadCrumbItemRenderType = (route) => {

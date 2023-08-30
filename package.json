@@ -68,10 +68,10 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.5",
-    "@ant-design/pro-components": "^2.6.12",
+    "@ant-design/pro-components": "^2.6.16",
     "@rallie/block": "^0.16.1",
     "@rallie/load-html": "^0.16.1",
-    "@rallie/react": "^0.16.1",
+    "@rallie/react": "^0.16.2",
     "antd": "^5.8.3",
     "axios": "^1.4.0",
     "i18next": "^22.5.1",

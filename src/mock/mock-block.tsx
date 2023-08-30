@@ -35,8 +35,11 @@ mockBlock
       locale: 'menu.business.index',
       name: 'menu.business.index',
       path: '',
-      // component: mockImport(() => <div>dsdsa</div>),
       children: [
+        {
+          index: true,
+          component: mockImport(() => <div>pms</div>),
+        },
         {
           path: 'pms',
           locale: 'menu.business.pms',
