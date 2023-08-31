@@ -16,7 +16,7 @@ const locales = {
 const RootComponent = () => {
   const lang = useBlockState(i18nBlock, (state) => state.language)
   const providers = [
-    <AntdConfigProvider locale={locales[lang as keyof typeof locales]} key="antd" />,
+    <AntdConfigProvider locale={locales[lang]} key="antd" />,
     <AntdApp key="antd-app" />,
   ]
   return (

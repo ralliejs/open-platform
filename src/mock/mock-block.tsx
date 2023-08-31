@@ -3,14 +3,14 @@ import type { I18nBlock, RoutesBlock } from '~/blocks'
 import { ORIGIN_ROUTES_BLOCK, ORIGIN_I18N_BLOCK } from '~/utils/constants'
 
 const mockBlock = createBlock('mock')
-const routesBlock = mockBlock.connect<RoutesBlock>(ORIGIN_ROUTES_BLOCK)
-const i18nBlock = mockBlock.connect<I18nBlock>(ORIGIN_I18N_BLOCK)
 
 const mockImport = (value: any) => () => Promise.resolve({ default: value })
 
 mockBlock
-  .relyOn([routesBlock.name])
+  .relyOn(['origin'])
   .onActivate(async () => {
+    const routesBlock = mockBlock.connect<RoutesBlock>(ORIGIN_ROUTES_BLOCK)
+    const i18nBlock = mockBlock.connect<I18nBlock>(ORIGIN_I18N_BLOCK)
     const { addI18nResources } = i18nBlock.methods
     const { addRoute } = routesBlock.methods
 
@@ -38,7 +38,7 @@ mockBlock
       children: [
         {
           index: true,
-          component: mockImport(() => <div>pms</div>),
+          redirect: '/app/mock/pms',
         },
         {
           path: 'pms',

@@ -1,7 +1,7 @@
 import { Async } from '@/async'
 // import { convertRoutes } from '~/utils/convert-route'
 import { PageLoading } from '@/page-loading'
-import { defineRoute } from './utils/defineRoute'
+import { defineRoute } from './utils/define-route'
 
 export const extensionsMarketRoute = defineRoute(() => ({
   path: 'extensions-market',

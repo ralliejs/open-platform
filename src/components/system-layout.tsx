@@ -74,23 +74,26 @@ interface SystemLayoutProps {
   route: EnhancedRouteObject
 }
 
+const actionsRender: ActionsRenderType = () => {
+  return [<ExtensionsMarketEntry key="plugins-market" />, <LocaleButton key="locale" />]
+}
+
+const breadCrumbItemRender: BreadCrumbItemRenderType = (route, params, routes, path) => {
+  return <Link to={route.path}>{route.breadcrumbName}</Link>
+}
+
+const menuItemRender: MenuItemRenderType = (item, element) => {
+  return <Link to={item.path}>{element}</Link>
+}
+
 export const SystemLayout = React.memo((props: SystemLayoutProps) => {
   const { route } = props
   const location = useLocation()
-  const navigate = useNavigate()
   const { t } = useI18nextTranslation()
-  const onMenuHeaderClick: OnMenuHeaderClickType = () => {
+  const navigate = useNavigate()
+  const onMenuHeaderClick = React.useCallback<OnMenuHeaderClickType>(() => {
     navigate('/')
-  }
-  const menuItemRender: MenuItemRenderType = (item, element) => {
-    return <Link to={item.path}>{element}</Link>
-  }
-  const breadCrumbItemRender: BreadCrumbItemRenderType = (route) => {
-    return <Link to={route.path}>{route.breadcrumbName}</Link>
-  }
-  const actionsRender: ActionsRenderType = (props) => {
-    return [<ExtensionsMarketEntry key="plugins-market" />, <LocaleButton key="locale" />]
-  }
+  }, [navigate])
   const locale = useBlockState(i18nBlock, (state) => state.language)
   return (
     <>

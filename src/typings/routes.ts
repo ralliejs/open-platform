@@ -11,6 +11,7 @@ export type EnhancedRouteObject = Omit<RouteObject, 'children'> &
 
 export type RemoteRouteObject = Omit<EnhancedRouteObject, 'element' | 'icon' | 'children'> & {
   owner: string
+  redirect?: string
   icon?: ComponentLoader
   component?: ComponentLoader
   children?: RemoteRouteObject[]

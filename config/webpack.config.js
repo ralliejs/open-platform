@@ -64,7 +64,12 @@ const config = {
       {
         test: /\.(js|jsx|ts|tsx)$/i,
         exclude: /node_modules/,
-        use: { loader: 'ts-loader' }, // 后面项目滚得比较大之后再添加thread-loader
+        use: {
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: isProduction,
+          },
+        }, // 后面项目滚得比较大之后再添加thread-loader
       },
       {
         test: /\.css$/i,
