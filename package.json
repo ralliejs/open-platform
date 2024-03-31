@@ -1,5 +1,5 @@
 {
-  "name": "my-webpack-project",
+  "name": "@runnan/open-platform-demo",
   "version": "1.0.0",
   "description": "My webpack project",
   "main": "./src/entry.ts",
