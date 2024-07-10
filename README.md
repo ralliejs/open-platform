@@ -1,25 +1,25 @@
 # Rallie Open Platform
 
-## 介绍
-这是一个用来验证基于rallieJS搭建微内核架构的前端应用的可行性的项目
+## Introduction
+This is a project to verify the feasibility of building a microkernel architecture-based front-end application with rallieJS.
 
-微内核架构的好处：
-- 解耦巨石应用
-- 支持外部插件扩展
+Benefits of microkernel architecture:
+- Decouples monolithic applications
+- Supports external plugin extensions
 
-## 技术栈
+## Technology Stack
 
-- 组件库：Antd
-- 应用骨架：Antd Pro
-- 插件治理：rallie
+- Component Library: Antd
+- Application Skeleton: Antd Pro
+- Plugin Governance: rallie
 
-## 插件接入
->宿主应用的Block声明参考`src/typings/index.ts#CoreType`
+## Plugin Integration
+> For the host application's Block declaration, refer to `src/typings/index.ts#CoreType`
 
->样例插件参考：[ralliejs/demo-plugin](https://github.com/ralliejs/demo-plugin)
+> Sample plugin reference: [ralliejs/demo-plugin](https://github.com/ralliejs/demo-plugin)
 
-### 注入runtime
-将core注入的runtime配置为external
+### Injecting Runtime
+Configure the runtime where the core is injected as external.
 ```ts
 import { defineConfig } from 'vite'
 import { viteExternalsPlugin } from "vite-plugin-externals";
@@ -46,21 +46,21 @@ export default defineConfig({
   ],
 });
 ```
-webpack可自行配置
-### 创建插件block
+Webpack can be configured as needed.
+### Creating Plugin Block
 
 ```ts
 import { createBlock } from '@rallie/block'
 
-const myPlugin = createBlock('{github用户名}/{github仓库名}')
+const myPlugin = createBlock('{github username}/{github repository name}')
   .relyOn(['core'])
   .onActivate(() => {
     const core = myPlugin.connect('core')
-    // 这里注册扩展逻辑
+    // Register extension logic here
   })
 
 myPlugin.run(async (env) => {
-  if (env.isEntry) { // 插件在本地开发时也能看到整个应用全貌
+  if (env.isEntry) { // Plugins can also see the full view of the application during local development
     const { loadHtml } = await import("@rallie/load-html");
     env.use(
       loadHtml({
@@ -74,8 +74,8 @@ myPlugin.run(async (env) => {
 });
 ```
 
-### 注册扩展逻辑
-- 添加多语言
+### Registering Extension Logic
+- Adding Multilingual Support
 ```ts
 const core = myPlugin.connect('core')
 core.methods.addI18nResources({
@@ -84,41 +84,41 @@ core.methods.addI18nResources({
 })
 ```
 
-- 使用多语言
+- Using Multilingual
 ```ts
 const core = myPlugin.connect('core')
-// useTranslation是react-i18next的useTranslation，不用关心namespace，开放平台会为插件注册的多语言资源注册唯一的namespace
+// useTranslation is from react-i18next's useTranslation, no need to care about the namespace, the open platform will register a unique namespace for the plugin's multilingual resources.
 const { useTranslation } = core.methods
 ```
 
-- 替换首页
+- Replacing the Home Page
 ```ts
 const core = myPlugin.connect('core')
 core.methods.replaceSlot('home', () => import('path/to/your/component'))
 ```
 
-- 添加路由
+- Adding Routes
 ```ts
 const core = myPlugin.connect('core')
 core.methods.addApplication({
-  path: 'my-route', // 推荐使用相对路径，如果用绝对路径，必须加上前缀`/app/${插件block名}`
-  name: '我的页面'
+  path: 'my-route', // It is recommended to use relative paths, if using an absolute path, you must add the prefix `/app/${plugin block name}`
+  name: 'My Page'
   locale: 'parent.locale.key'
   loader: () => import('path/to/your/component'),
   icon?: () => import('path/to/your/icon/component')
   children: [
     {
       path: 'child-route',
-      name: '子页面',
+      name: 'Subpage',
       locale: 'child.locale.key'
       loader: () => import('path/to/your/child/component'),
     }
   ]
 })
-// 其他配置项参考react-router-dom和@ant-design/pro-layout
+// Other configuration items refer to react-router-dom and @ant-design/pro-layout
 ```
 
-- 注册插件信息
+- Registering Plugin Information
 ```ts
 const core = myPlugin.connect('core')
 core.methods.registerPluginInfo({
@@ -127,10 +127,10 @@ core.methods.registerPluginInfo({
 })
 ```
 
-### 部署
-将应用部署到Github Page，然后到 https://ralliejs.github.io/open-platform 安装插件即可
+### Deployment
+Deploy the application to Github Pages, and then go to https://ralliejs.github.io/open-platform to install the plugin.
 
-参考action
+Reference action
 ```yaml
 name: Deploy github page
 
@@ -162,12 +162,3 @@ jobs:
           branch: gh-page # The branch the action should deploy to.
           folder: dist # The folder the action should deploy.
 ```
-
-
-
-
-
-
-
-
-

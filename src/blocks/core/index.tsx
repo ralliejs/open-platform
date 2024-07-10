@@ -24,7 +24,6 @@ export const core = createBlock<CoreType>('core')
     true,
   )
   .onActivate(async () => {
-    // 加载Core的资源，让Core的UI先渲染 -> 注入runtime -> 加载依赖Core的其他Block
     import('./app')
     const before = Date.now()
     await import('./runtime')
@@ -34,12 +33,12 @@ export const core = createBlock<CoreType>('core')
 
 core.addMethods({
   registerPluginInfo(this: { trigger: string }, pluginInfo) {
-    core.setState('注册插件信息', (state) => {
+    core.setState('register plugin info', (state) => {
       state.addOns.pluginInfo[this.trigger] = pluginInfo
     })
   },
   registerSlot(this: { trigger: string }, slotName, loader) {
-    core.setState('注册插槽', (state) => {
+    core.setState('register slots', (state) => {
       state.slots[slotName] = loader
     })
   },
@@ -55,7 +54,7 @@ core.addMethods({
         children: application.children?.map((item) => transformedApplication(item)),
       }
     }
-    core.setState('添加应用', (state) => {
+    core.setState('add application', (state) => {
       state.applications.push(transformedApplication(application, this.trigger + '/'))
     })
   },
